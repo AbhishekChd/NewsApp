@@ -1,0 +1,35 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+
+    <!-- Card -->
+    <dimen name="card_radius">2dp</dimen>
+    <dimen name="card_horizontal_margin">8dp</dimen>
+    <dimen name="card_vertical_margin">12dp</dimen>
+
+    <!-- Image dimen -->
+    <dimen name="image_height">100dp</dimen>
+    <dimen name="image_width">100dp</dimen>
+
+    <!-- Primary text-->
+    <dimen name="primary_text">14sp</dimen>
+    <dimen name="primary_top_padding">8dp</dimen>
+    <dimen name="primary_bottom_padding">8dp</dimen>
+    <dimen name="primary_horizontal_padding">8dp</dimen>
+
+    <!-- Subtitle -->
+    <dimen name="subtitle_text">14sp</dimen>
+    <dimen name="subtitle_bottom_padding">8dp</dimen>
+    <dimen name="subtitle_horizontal_padding">8dp</dimen>
+
+    <!-- Subtext -->
+    <dimen name="subtext_text">14sp</dimen>
+    <dimen name="subtext_top_padding">16dp</dimen>
+    <dimen name="subtext_bottom_padding">16dp</dimen>
+    <dimen name="subtext_horizontal_padding">16dp</dimen>
+</resources>
