@@ -11,7 +11,7 @@ NewsApi_ApiKey=<YOUR API KEY>
 ``` 
 3. Run the app by <kbd>Shift + F10</kbd> or clicking <kbd>Run</kbd>
 
-![Working app](app.gif)
+<img src="app.gif" width="40%">
 
 #### Libraries
 - [Google gson](https://github.com/google/gson) For parsing JSON data
