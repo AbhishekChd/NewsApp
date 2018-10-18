@@ -2,6 +2,9 @@ package com.example.abhishek.newsapp.network;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -31,12 +34,20 @@ public class NewsApiClient {
                 // 5 MB of cache
                 Cache cache = new Cache(context.getApplicationContext().getCacheDir(), 5 * 1024 * 1024);
                 OkHttpClient client = new OkHttpClient.Builder().cache(cache).build();
+
+                // Configure GSON
+                Gson gson = new GsonBuilder()
+                        .setDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
+                        .create();
+
+                // Retrofit Builder
                 Retrofit.Builder builder =
                         new Retrofit
                                 .Builder()
                                 .baseUrl(NEWS_API_URL)
                                 .client(client)
-                                .addConverterFactory(GsonConverterFactory.create());
+                                .addConverterFactory(GsonConverterFactory.create(gson));
+                // Set NewsApi instance
                 sInstance = builder.build().create(NewsApi.class);
             }
         }

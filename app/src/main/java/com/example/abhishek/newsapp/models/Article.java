@@ -1,5 +1,7 @@
 package com.example.abhishek.newsapp.models;
 
+import java.sql.Timestamp;
+
 /**
  * A News Article content and it's details
  * Along with the {@link ArticleSource} of News Article
@@ -9,7 +11,7 @@ public class Article {
     private String title;
     private String description;
     private String url;
-    private String publishedAt;
+    private Timestamp publishedAt;
     private String urlToImage;
     private ArticleSource source;
     private String content;
@@ -25,7 +27,7 @@ public class Article {
      * @param content     The unformatted content of the article, where available. This is truncated to
      *                    260 chars for Developer plan users.
      */
-    public Article(String author, String title, String description, String url, String publishedAt, String urlToImage, ArticleSource source, String content) {
+    public Article(String author, String title, String description, String url, Timestamp publishedAt, String urlToImage, ArticleSource source, String content) {
         this.author = author;
         this.title = title;
         this.description = description;
@@ -52,7 +54,7 @@ public class Article {
         return url;
     }
 
-    public String getPublishedAt() {
+    public Timestamp getPublishedAt() {
         return publishedAt;
     }
 
