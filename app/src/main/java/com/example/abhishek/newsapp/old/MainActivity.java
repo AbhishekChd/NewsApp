@@ -1,4 +1,4 @@
-package com.example.abhishek.newsapp;
+package com.example.abhishek.newsapp.old;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -17,13 +17,15 @@ import android.view.MenuItem;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.example.abhishek.newsapp.adapters.NewsAdapter;
-import com.example.abhishek.newsapp.contracts.BaseUrlContract;
-import com.example.abhishek.newsapp.models.Box;
-import com.example.abhishek.newsapp.models.NewsArticle;
-import com.example.abhishek.newsapp.network.GsonRequest;
-import com.example.abhishek.newsapp.network.NewsRequestQueue;
-import com.example.abhishek.newsapp.utils.NetworkUtils;
+import com.example.abhishek.newsapp.BuildConfig;
+import com.example.abhishek.newsapp.R;
+import com.example.abhishek.newsapp.old.adapters.NewsAdapter;
+import com.example.abhishek.newsapp.old.contracts.BaseUrlContract;
+import com.example.abhishek.newsapp.old.models.Box;
+import com.example.abhishek.newsapp.old.models.NewsArticle;
+import com.example.abhishek.newsapp.old.network.GsonRequest;
+import com.example.abhishek.newsapp.old.network.NewsRequestQueue;
+import com.example.abhishek.newsapp.old.utils.NetworkUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

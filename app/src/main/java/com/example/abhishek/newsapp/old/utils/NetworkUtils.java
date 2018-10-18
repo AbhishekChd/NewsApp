@@ -1,9 +1,9 @@
-package com.example.abhishek.newsapp.utils;
+package com.example.abhishek.newsapp.old.utils;
 
 import android.net.Uri;
 import android.util.Log;
 
-import com.example.abhishek.newsapp.contracts.BaseUrlContract;
+import com.example.abhishek.newsapp.old.contracts.BaseUrlContract;
 
 import java.io.IOException;
 import java.io.InputStream;

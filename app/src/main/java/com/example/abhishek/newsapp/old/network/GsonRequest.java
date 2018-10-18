@@ -1,4 +1,4 @@
-package com.example.abhishek.newsapp.network;
+package com.example.abhishek.newsapp.old.network;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;

@@ -1,4 +1,4 @@
-package com.example.abhishek.newsapp.adapters;
+package com.example.abhishek.newsapp.old.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -12,8 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.abhishek.newsapp.R;
-import com.example.abhishek.newsapp.models.NewsArticle;
-import com.example.abhishek.newsapp.utils.DateTimeUtils;
+import com.example.abhishek.newsapp.old.models.NewsArticle;
+import com.example.abhishek.newsapp.old.utils.DateTimeUtils;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

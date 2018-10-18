@@ -1,4 +1,4 @@
-package com.example.abhishek.newsapp.models;
+package com.example.abhishek.newsapp.old.models;
 
 /**
  * A {@link NewsPost} object contain information about a single News Post

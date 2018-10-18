@@ -1,4 +1,4 @@
-package com.example.abhishek.newsapp.models;
+package com.example.abhishek.newsapp.old.models;
 
 import java.util.ArrayList;
 import java.util.List;

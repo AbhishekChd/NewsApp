@@ -1,4 +1,4 @@
-package com.example.abhishek.newsapp.contracts;
+package com.example.abhishek.newsapp.old.contracts;
 
 public final class BaseUrlContract {
     public final static int TOP_HEADLINES = 0;

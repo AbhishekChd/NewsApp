@@ -1,4 +1,4 @@
-package com.example.abhishek.newsapp.network;
+package com.example.abhishek.newsapp.old.network;
 
 import android.content.Context;
 

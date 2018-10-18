@@ -1,8 +1,8 @@
-package com.example.abhishek.newsapp.utils;
+package com.example.abhishek.newsapp.old.utils;
 
 import android.util.Log;
 
-import com.example.abhishek.newsapp.models.NewsPost;
+import com.example.abhishek.newsapp.old.models.NewsPost;
 
 import org.json.JSONArray;
 import org.json.JSONException;

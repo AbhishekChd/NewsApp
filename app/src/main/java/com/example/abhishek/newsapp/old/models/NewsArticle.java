@@ -1,4 +1,4 @@
-package com.example.abhishek.newsapp.models;
+package com.example.abhishek.newsapp.old.models;
 
 public class NewsArticle {
     private String author;

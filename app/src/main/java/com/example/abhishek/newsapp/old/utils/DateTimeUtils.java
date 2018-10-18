@@ -1,4 +1,4 @@
-package com.example.abhishek.newsapp.utils;
+package com.example.abhishek.newsapp.old.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
