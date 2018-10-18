@@ -34,9 +34,9 @@ public class Article {
     private ArticleSource source;
     @ColumnInfo(name = "content")
     private String content;
-    @ColumnInfo(name = "store_date")
+    @ColumnInfo(name = "save_date")
     @Expose(serialize = false, deserialize = false)
-    private Timestamp dateStored = new Timestamp(System.currentTimeMillis());
+    private Timestamp saveDate = new Timestamp(System.currentTimeMillis());
 
     /**
      * @param author      author of the article
@@ -64,8 +64,8 @@ public class Article {
         return id;
     }
 
-    public Timestamp getDateStored() {
-        return dateStored;
+    public Timestamp getSaveDate() {
+        return saveDate;
     }
 
     public String getAuthor() {

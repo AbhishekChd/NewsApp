@@ -16,17 +16,17 @@ import java.sql.Timestamp;
 public class SavedArticle {
     @PrimaryKey
     @ColumnInfo(name = "time_saved")
-    private Timestamp timeSaved;
+    private Timestamp timestamp;
     @ColumnInfo(name = "news_id")
     private int newsId;
 
     public SavedArticle(int newsId) {
-        this.timeSaved = new Timestamp(System.currentTimeMillis());
+        this.timestamp = new Timestamp(System.currentTimeMillis());
         this.newsId = newsId;
     }
 
-    public Timestamp getTimeSaved() {
-        return timeSaved;
+    public Timestamp getTimestamp() {
+        return timestamp;
     }
 
     public int getNewsId() {
