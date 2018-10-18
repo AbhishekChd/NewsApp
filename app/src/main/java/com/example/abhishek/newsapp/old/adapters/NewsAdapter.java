@@ -54,7 +54,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsPostViewHo
 
 
         if (urlToImage != null && !TextUtils.isEmpty(urlToImage) && !urlToImage.equals("")) {
-            Picasso.with(context)
+            Picasso.get()
                     .load(urlToImage)
                     .fit()
                     .centerCrop()
@@ -62,7 +62,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsPostViewHo
                     .into(holder.imageView);
             Log.v(getClass().getSimpleName(), urlToImage);
         } else {
-            Picasso.with(context)
+            Picasso.get()
                     .load(R.mipmap.ic_news_logo)
                     .into(holder.imageView);
         }
