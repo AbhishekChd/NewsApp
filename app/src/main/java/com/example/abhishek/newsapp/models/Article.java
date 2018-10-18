@@ -1,20 +1,42 @@
 package com.example.abhishek.newsapp.models;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Embedded;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
+import com.google.gson.annotations.Expose;
+
 import java.sql.Timestamp;
 
 /**
  * A News Article content and it's details
  * Along with the {@link ArticleSource} of News Article
  */
+@Entity(tableName = "articles")
 public class Article {
+    @PrimaryKey(autoGenerate = true)
+    @Expose(serialize = false, deserialize = false)
+    public int id;
+    @ColumnInfo(name = "author")
     private String author;
+    @ColumnInfo(name = "title")
     private String title;
+    @ColumnInfo(name = "description")
     private String description;
+    @ColumnInfo(name = "url")
     private String url;
+    @ColumnInfo(name = "published_at")
     private Timestamp publishedAt;
+    @ColumnInfo(name = "image_url")
     private String urlToImage;
+    @Embedded(prefix = "source_")
     private ArticleSource source;
+    @ColumnInfo(name = "content")
     private String content;
+    @ColumnInfo(name = "store_date")
+    @Expose(serialize = false, deserialize = false)
+    private Timestamp dateStored = new Timestamp(System.currentTimeMillis());
 
     /**
      * @param author      author of the article
@@ -36,6 +58,14 @@ public class Article {
         this.urlToImage = urlToImage;
         this.source = source;
         this.content = content;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public Timestamp getDateStored() {
+        return dateStored;
     }
 
     public String getAuthor() {

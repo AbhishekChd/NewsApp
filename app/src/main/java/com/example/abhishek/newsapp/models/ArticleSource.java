@@ -1,12 +1,16 @@
 package com.example.abhishek.newsapp.models;
 
+import android.arch.persistence.room.ColumnInfo;
+
 /**
  * Source of the news article
  * A minimized version of {@link Source} returned with {@link Article}
  * Only the mandatory details are included
  */
 public class ArticleSource {
+    @ColumnInfo(name = "id")
     private String id;
+    @ColumnInfo(name = "name")
     private String name;
 
     /**
