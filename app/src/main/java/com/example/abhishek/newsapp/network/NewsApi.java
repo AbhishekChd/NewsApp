@@ -9,6 +9,10 @@ import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.Query;
 
+/**
+ * An Api interface to send network requests
+ * Includes Category enum that provides category names for requests
+ */
 public interface NewsApi {
     String API_KEY = BuildConfig.NewsApiKey;
 
