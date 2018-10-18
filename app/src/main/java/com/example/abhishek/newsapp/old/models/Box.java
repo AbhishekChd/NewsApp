@@ -1,5 +1,7 @@
 package com.example.abhishek.newsapp.old.models;
 
+import com.example.abhishek.newsapp.network.NewsApi;
+
 import java.util.ArrayList;
 import java.util.List;
 
