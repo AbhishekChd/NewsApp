@@ -9,6 +9,7 @@ import android.arch.persistence.room.PrimaryKey;
 import com.google.gson.annotations.Expose;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 /**
  * A News Article content and it's details
@@ -35,6 +36,9 @@ public class Article {
     private ArticleSource source;
     @ColumnInfo(name = "content")
     private String content;
+    @ColumnInfo(name = "category")
+    @Expose(serialize = false, deserialize = false)
+    private String category;
     @ColumnInfo(name = "save_date")
     @Expose(serialize = false, deserialize = false)
     private Timestamp saveDate = new Timestamp(System.currentTimeMillis());
@@ -59,6 +63,14 @@ public class Article {
         this.urlToImage = urlToImage;
         this.source = source;
         this.content = content;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public int getId() {
