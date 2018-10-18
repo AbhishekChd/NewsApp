@@ -8,7 +8,7 @@ import com.example.abhishek.newsapp.models.Article;
 
 import java.util.List;
 
-public interface HeadinesDao {
+public interface HeadlinesDao {
     @Insert
     void bulkInsert(List<Article> articles);
 
