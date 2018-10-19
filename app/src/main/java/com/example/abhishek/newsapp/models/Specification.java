@@ -5,7 +5,6 @@ import com.example.abhishek.newsapp.network.NewsApi;
 public class Specification {
     private String category;
     private String country;
-    private String language;
 
     public String getCategory() {
         return category;
@@ -21,13 +20,5 @@ public class Specification {
 
     public void setCountry(String country) {
         this.country = country;
-    }
-
-    public String getLanguage() {
-        return language == null ? "en" : language;
-    }
-
-    public void setLanguage(String language) {
-        this.language = language;
     }
 }

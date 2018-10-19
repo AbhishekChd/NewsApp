@@ -20,15 +20,13 @@ public interface NewsApi {
     @GET("/v2/top-headlines")
     Call<ArticleResponseWrapper> getHeadlines(
             @Query("category") String category,
-            @Query("country") String country,
-            @Query("language") String language
+            @Query("country") String country
     );
 
     @Headers("X-Api-Key:" + API_KEY)
     @GET("/v2/top-headlines")
     Call<ArticleResponseWrapper> getHeadlinesBySource(
-            @Query("sources") String source,
-            @Query("language") String language
+            @Query("sources") String source
     );
 
     @Headers("X-Api-Key:" + API_KEY)

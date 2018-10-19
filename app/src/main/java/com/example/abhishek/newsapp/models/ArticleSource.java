@@ -29,4 +29,12 @@ public class ArticleSource {
     public String getId() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return "ArticleSource{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

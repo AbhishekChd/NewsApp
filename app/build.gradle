@@ -38,6 +38,7 @@ dependencies {
     // Retrofit for networking
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
 
     // Room for persisting data in database
     implementation "android.arch.persistence.room:runtime:$roomVersion"

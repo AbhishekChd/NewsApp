@@ -5,8 +5,15 @@ import android.content.Context;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
 import okhttp3.Cache;
+import okhttp3.CacheControl;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Response;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -33,7 +40,32 @@ public class NewsApiClient {
             synchronized (LOCK) {
                 // 5 MB of cache
                 Cache cache = new Cache(context.getApplicationContext().getCacheDir(), 5 * 1024 * 1024);
-                OkHttpClient client = new OkHttpClient.Builder().cache(cache).build();
+
+                // Used for cache connection
+                Interceptor networkInterceptor = new Interceptor() {
+                    @Override
+                    public Response intercept(Chain chain) throws IOException {
+                        CacheControl cacheControl = new CacheControl.Builder()
+                                .maxAge(10, TimeUnit.MINUTES)
+                                .build();
+                        return chain.proceed(chain.request())
+                                .newBuilder()
+                                .header("Cache-Control", cacheControl.toString())
+                                .build();
+                    }
+                };
+
+                // For logging
+                HttpLoggingInterceptor loggingInterceptor =
+                        new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
+
+
+                // Building OkHttp client
+                OkHttpClient client = new OkHttpClient.Builder()
+                        .cache(cache)
+                        .addNetworkInterceptor(networkInterceptor)
+                        .addInterceptor(loggingInterceptor)
+                        .build();
 
                 // Configure GSON
                 Gson gson = new GsonBuilder()

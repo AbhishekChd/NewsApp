@@ -2,7 +2,9 @@ package com.example.abhishek.newsapp.data;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.Observer;
 import android.content.Context;
+import android.support.annotation.Nullable;
 
 import com.example.abhishek.newsapp.models.Article;
 import com.example.abhishek.newsapp.models.ArticleResponseWrapper;
@@ -22,14 +24,28 @@ public class NewsRepository {
 
     private final NewsApi newsApiService;
     private final HeadlinesDao headlinesDao;
-    private final SourcesDao sourceDao;
-    private MutableLiveData<List<Article>> articlesLiveData;
+    private final AppExecutors mExecutor;
+    private MutableLiveData<List<Article>> networkArticleLiveData;
 
     // required private constructor for Singleton pattern
     private NewsRepository(Context context) {
         newsApiService = NewsApiClient.getInstance(context);
         headlinesDao = NewsDatabase.getInstance(context).headlinesDao();
-        sourceDao = NewsDatabase.getInstance(context).sourcesDao();
+        mExecutor = AppExecutors.getInstance();
+        networkArticleLiveData = new MutableLiveData<>();
+        networkArticleLiveData.observeForever(new Observer<List<Article>>() {
+            @Override
+            public void onChanged(@Nullable final List<Article> articles) {
+                if (articles != null) {
+                    mExecutor.getDiskIO().execute(new Runnable() {
+                        @Override
+                        public void run() {
+                            headlinesDao.bulkInsert(articles);
+                        }
+                    });
+                }
+            }
+        });
     }
 
     public synchronized static NewsRepository getInstance(Context context) {
@@ -41,18 +57,26 @@ public class NewsRepository {
         return sInstance;
     }
 
-    public LiveData<List<Article>> getHeadlines(Specification specs) {
+    public LiveData<List<Article>> getHeadlines(final Specification specs) {
+        fetchFromNetwork(specs);
+        return headlinesDao.getAllArticles();
+    }
+
+    private void fetchFromNetwork(final Specification specs) {
         Call<ArticleResponseWrapper> networkCall = newsApiService.getHeadlines(
                 specs.getCategory(),
-                specs.getCountry(),
-                specs.getLanguage()
+                specs.getCountry()
         );
 
         networkCall.enqueue(new Callback<ArticleResponseWrapper>() {
             @Override
             public void onResponse(Call<ArticleResponseWrapper> call, Response<ArticleResponseWrapper> response) {
                 if (response.body() != null) {
-                    articlesLiveData.setValue(response.body().getArticles());
+                    List<Article> articles = response.body().getArticles();
+                    for (Article article : articles) {
+                        article.setCategory(specs.getCategory());
+                    }
+                    networkArticleLiveData.setValue(articles);
                 }
             }
 
@@ -61,6 +85,5 @@ public class NewsRepository {
 
             }
         });
-        return articlesLiveData;
     }
 }

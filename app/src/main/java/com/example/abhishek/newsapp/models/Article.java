@@ -115,4 +115,21 @@ public class Article {
     public String getContent() {
         return content;
     }
+
+    @Override
+    public String toString() {
+        return "Article{" +
+                "id=" + id +
+                ", author='" + author + '\'' +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", url='" + url + '\'' +
+                ", publishedAt=" + publishedAt +
+                ", urlToImage='" + urlToImage + '\'' +
+                ", source=" + source +
+                ", content='" + content + '\'' +
+                ", category='" + category + '\'' +
+                ", saveDate=" + saveDate +
+                '}';
+    }
 }
