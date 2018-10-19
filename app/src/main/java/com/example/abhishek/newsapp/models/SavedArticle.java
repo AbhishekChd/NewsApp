@@ -19,7 +19,6 @@ public class SavedArticle {
     private Timestamp timestamp;
     @ColumnInfo(name = "news_id")
     private int newsId;
-
     public SavedArticle(int newsId) {
         this.timestamp = new Timestamp(System.currentTimeMillis());
         this.newsId = newsId;
@@ -27,6 +26,10 @@ public class SavedArticle {
 
     public Timestamp getTimestamp() {
         return timestamp;
+    }
+
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
     }
 
     public int getNewsId() {

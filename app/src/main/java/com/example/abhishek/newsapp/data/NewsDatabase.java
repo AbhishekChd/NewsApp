@@ -3,6 +3,7 @@ package com.example.abhishek.newsapp.data;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
+import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 
 import com.example.abhishek.newsapp.models.Article;
@@ -12,6 +13,7 @@ import com.example.abhishek.newsapp.models.Source;
 @Database(entities = {Article.class, Source.class, SavedArticle.class},
         version = 1,
         exportSchema = false)
+@TypeConverters(DatabaseConverters.class)
 public abstract class NewsDatabase extends RoomDatabase {
     private static final Object LOCK = new Object();
     private static final String DATABASE_NAME = "news";

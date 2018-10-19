@@ -9,7 +9,6 @@ import android.arch.persistence.room.PrimaryKey;
 import com.google.gson.annotations.Expose;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 
 /**
  * A News Article content and it's details
@@ -79,6 +78,10 @@ public class Article {
 
     public Timestamp getSaveDate() {
         return saveDate;
+    }
+
+    public void setSaveDate(Timestamp saveDate) {
+        this.saveDate = saveDate;
     }
 
     public String getAuthor() {
