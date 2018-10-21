@@ -3,6 +3,7 @@
     <color name="colorPrimary">#111</color>
     <color name="colorPrimaryDark">#111</color>
     <color name="colorAccent">#ededed</color>
+    <color name="colorTextPrimary">#fff</color>
 
     <!--<color name="colorPrimary">#424242</color>-->
     <!--<color name="colorPrimaryDark">#1b1b1b</color>-->
