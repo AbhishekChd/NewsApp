@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.old_activity_main);
 
         Typeface font = Typeface.createFromAsset(getAssets(), "fonts/fredericka_the_great.ttf");
 

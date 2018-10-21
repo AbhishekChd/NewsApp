@@ -9,6 +9,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -19,6 +20,9 @@ android {
         debug {
             buildConfigField("String", "NewsApiKey", NewsApi_ApiKey)
         }
+    }
+    dataBinding {
+        enabled = true
     }
 }
 
@@ -42,6 +46,9 @@ dependencies {
 
     // Room for persisting data in database
     implementation "android.arch.persistence.room:runtime:$room_version"
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'com.android.support:support-vector-drawable:28.0.0'
     annotationProcessor "android.arch.persistence.room:compiler:$room_version"
 
     // ViewModel and LiveData
