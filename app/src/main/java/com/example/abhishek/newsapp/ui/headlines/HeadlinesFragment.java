@@ -28,8 +28,8 @@ public class HeadlinesFragment extends Fragment {
             R.drawable.nav_business,
             R.drawable.nav_sports,
             R.drawable.nav_health,
-            R.drawable.ic_headlines,
-            R.drawable.nav_technology,
+            R.drawable.nav_entertainment,
+            R.drawable.nav_tech,
             R.drawable.nav_science,
 
     };

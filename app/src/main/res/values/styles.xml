@@ -6,7 +6,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColorPrimary">@color/colorTextPrimary</item>
-        <item name="android:fontFamily">@font/roboto_slab_regular</item>
+        <!--<item name="android:fontFamily">@font/roboto_slab_regular</item>-->
     </style>
 
     <style name="AppTheme.Headlines.TabTextAppearance" parent="TextAppearance.Design.Tab">
