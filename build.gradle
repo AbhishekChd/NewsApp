@@ -27,6 +27,7 @@ allprojects {
         room_version = "1.1.1"
         lifecycle_version = "1.1.1"
         timber_version = "4.7.1"
+        glide_version = "4.8.0"
     }
 }
 

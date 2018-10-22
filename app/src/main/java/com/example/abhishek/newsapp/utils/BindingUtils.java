@@ -1,5 +1,12 @@
 package com.example.abhishek.newsapp.utils;
 
+import android.content.Context;
+import android.databinding.BindingAdapter;
+import android.widget.ImageView;
+
+import com.bumptech.glide.request.RequestOptions;
+import com.example.abhishek.newsapp.R;
+
 import java.sql.Timestamp;
 
 import timber.log.Timber;
@@ -26,7 +33,13 @@ public class BindingUtils {
         }
     }
 
-    //    @{news.source.name}
+    /**
+     * Utility method for fetching formatted News Source and Time
+     *
+     * @param sourceName Article source name
+     * @param date       Publish date of article
+     * @return Formatted outputted Example: <b>CNN • 7h</b>
+     */
     public static String getSourceAndTime(String sourceName, Timestamp date) {
         Timber.d("Date : %s", date.toString());
         Timber.d("Date : %s", date.getTime());
@@ -35,6 +48,23 @@ public class BindingUtils {
                 .append(" • ")
                 .append(getElapsedTime(date.getTime()));
         return builder.toString();
+    }
+
+    /**
+     * Utility method for Image url
+     *
+     * @param imageView Default view passed for displaying image
+     * @param url       Url of the image
+     */
+    @BindingAdapter({"newsImage"})
+    public static void loadImage(ImageView imageView, String url) {
+        Context context = imageView.getContext();
+        Timber.d("Image Url : %s", url);
+        GlideApp.with(imageView)
+                .load(url)
+                .apply(NewsGlideModule.roundedCornerImage(new RequestOptions(), imageView.getContext(), 4))
+                .placeholder(context.getResources().getDrawable(R.color.cardBackground))
+                .into(imageView);
     }
 }
 

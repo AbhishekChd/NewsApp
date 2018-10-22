@@ -55,6 +55,10 @@ dependencies {
     //Timber for logging
     implementation "com.jakewharton.timber:timber:$timber_version"
 
+    // Image Loading and Caching
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
+
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.android.volley:volley:1.1.1'
     implementation 'com.google.code.gson:gson:2.8.5'

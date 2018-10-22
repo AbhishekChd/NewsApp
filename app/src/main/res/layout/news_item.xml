@@ -37,6 +37,7 @@
 
         <ImageView
             android:id="@+id/iv_news_image"
+            newsImage="@{news.urlToImage}"
             android:layout_width="82dp"
             android:layout_height="82dp"
             android:src="@color/cardBackground"
