@@ -3,8 +3,8 @@ package com.example.abhishek.newsapp.models;
 import java.util.ArrayList;
 
 public class SourceResponseWrapper {
-    private String status;
-    private ArrayList<Source> sources;
+    private final String status;
+    private final ArrayList<Source> sources;
 
     /**
      * @param status  If the request was successful or not. Options: ok, error.

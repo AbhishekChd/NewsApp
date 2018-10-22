@@ -6,13 +6,5 @@
     <color name="colorAccent">#ced7db</color>
     <color name="colorTextPrimary">#ffffff</color>
     <color name="colorTextSecondary">#000000</color>
-
-    <!--<color name="colorPrimary">#424242</color>-->
-    <!--<color name="colorPrimaryDark">#1b1b1b</color>-->
-    <!--<color name="colorAccent">#ededed</color>-->
     <color name="cardBackground">#ddd</color>
-
-    <color name="title_text">#212121</color>
-    <color name="subtitle_text">#757575</color>
-    <color name="subtext_text">#444444</color>
 </resources>

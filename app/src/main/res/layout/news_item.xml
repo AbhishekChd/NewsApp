@@ -40,6 +40,7 @@
             newsImage="@{news.urlToImage}"
             android:layout_width="82dp"
             android:layout_height="82dp"
+            android:contentDescription="@string/image_desc"
             android:src="@color/cardBackground"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -56,25 +57,16 @@
             app:layout_constraintTop_toBottomOf="@id/tv_news_title"
             tools:text="@string/sample_source" />
 
-
         <ImageView
             android:id="@+id/iv_options"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/image_desc"
             android:paddingStart="4dp"
             android:paddingEnd="0dp"
             android:paddingBottom="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/tv_news_title"
             app:srcCompat="@drawable/ic_more_options" />
-
-        <!--<ImageView-->
-        <!--android:id="@+id/iv_options"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--app:layout_constraintBottom_toBottomOf="@id/tv_news_source"-->
-        <!--app:layout_constraintEnd_toEndOf="@id/tv_news_title"-->
-        <!--app:srcCompat="@drawable/ic_more_options" />-->
-
     </android.support.constraint.ConstraintLayout>
 </layout>

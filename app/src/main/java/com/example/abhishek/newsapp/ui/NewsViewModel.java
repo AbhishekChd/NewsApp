@@ -12,7 +12,7 @@ import com.example.abhishek.newsapp.models.Specification;
 import java.util.List;
 
 public class NewsViewModel extends AndroidViewModel {
-    private NewsRepository mNewsRepository;
+    private final NewsRepository mNewsRepository;
 
     public NewsViewModel(@NonNull Application application) {
         super(application);

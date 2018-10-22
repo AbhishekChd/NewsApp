@@ -41,13 +41,7 @@ public class BindingUtils {
      * @return Formatted outputted Example: <b>CNN • 7h</b>
      */
     public static String getSourceAndTime(String sourceName, Timestamp date) {
-        Timber.d("Date : %s", date.toString());
-        Timber.d("Date : %s", date.getTime());
-        StringBuilder builder = new StringBuilder();
-        builder.append(sourceName)
-                .append(" • ")
-                .append(getElapsedTime(date.getTime()));
-        return builder.toString();
+        return sourceName + " • " + getElapsedTime(date.getTime());
     }
 
     /**

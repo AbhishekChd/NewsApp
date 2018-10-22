@@ -9,9 +9,9 @@ import android.arch.persistence.room.ColumnInfo;
  */
 public class ArticleSource {
     @ColumnInfo(name = "id")
-    private String id;
+    private final String id;
     @ColumnInfo(name = "name")
-    private String name;
+    private final String name;
 
     /**
      * @param id   id of the news source, example <b>cnn</b>

@@ -20,21 +20,21 @@ public class Article {
     @Expose(serialize = false, deserialize = false)
     public int id;
     @ColumnInfo(name = "author")
-    private String author;
+    private final String author;
     @ColumnInfo(name = "title")
-    private String title;
+    private final String title;
     @ColumnInfo(name = "description")
-    private String description;
+    private final String description;
     @ColumnInfo(name = "url")
-    private String url;
+    private final String url;
     @ColumnInfo(name = "published_at")
-    private Timestamp publishedAt;
+    private final Timestamp publishedAt;
     @ColumnInfo(name = "image_url")
-    private String urlToImage;
+    private final String urlToImage;
     @Embedded(prefix = "source_")
-    private ArticleSource source;
+    private final ArticleSource source;
     @ColumnInfo(name = "content")
-    private String content;
+    private final String content;
     @ColumnInfo(name = "category")
     @Expose(serialize = false, deserialize = false)
     private String category;

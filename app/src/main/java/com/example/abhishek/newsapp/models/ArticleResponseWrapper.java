@@ -6,9 +6,9 @@ import java.util.List;
  * Response of network requests for News Articles
  */
 public class ArticleResponseWrapper {
-    private String status;
-    private int totalResults;
-    private List<Article> articles;
+    private final String status;
+    private final int totalResults;
+    private final List<Article> articles;
 
     /**
      * @param status       If the request was successful or not. Options: ok, error.

@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Observer;
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.example.abhishek.newsapp.models.Article;
@@ -25,7 +26,7 @@ public class NewsRepository {
     private final NewsApi newsApiService;
     private final HeadlinesDao headlinesDao;
     private final AppExecutors mExecutor;
-    private MutableLiveData<List<Article>> networkArticleLiveData;
+    private final MutableLiveData<List<Article>> networkArticleLiveData;
 
     // required private constructor for Singleton pattern
     private NewsRepository(Context context) {
@@ -70,7 +71,7 @@ public class NewsRepository {
 
         networkCall.enqueue(new Callback<ArticleResponseWrapper>() {
             @Override
-            public void onResponse(Call<ArticleResponseWrapper> call, Response<ArticleResponseWrapper> response) {
+            public void onResponse(@NonNull Call<ArticleResponseWrapper> call, @NonNull Response<ArticleResponseWrapper> response) {
                 if (response.body() != null) {
                     List<Article> articles = response.body().getArticles();
                     for (Article article : articles) {
@@ -81,7 +82,7 @@ public class NewsRepository {
             }
 
             @Override
-            public void onFailure(Call<ArticleResponseWrapper> call, Throwable t) {
+            public void onFailure(@NonNull Call<ArticleResponseWrapper> call, @NonNull Throwable t) {
 
             }
         });

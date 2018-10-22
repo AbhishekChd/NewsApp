@@ -14,7 +14,7 @@ import java.util.List;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder> {
     private List<Article> articles;
-    private NewsAdapterListener listener;
+    private final NewsAdapterListener listener;
     private LayoutInflater layoutInflater;
 
     public NewsAdapter(List<Article> articles, NewsAdapterListener listener) {

@@ -27,7 +27,7 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsAdapterLis
     public static final String PARAM_CATEGORY = "param-category";
     private NewsApi.Category newsCategory;
     private NewsFragmentBinding binding;
-    private NewsAdapter newsAdapter = new NewsAdapter(null, this);
+    private final NewsAdapter newsAdapter = new NewsAdapter(null, this);
 
     public static NewsFragment newInstance(NewsApi.Category category) {
         NewsFragment fragment = new NewsFragment();

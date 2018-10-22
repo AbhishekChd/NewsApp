@@ -13,19 +13,19 @@ public class Source {
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "id")
-    private String id;
+    private final String id;
     @ColumnInfo(name = "name")
-    private String name;
+    private final String name;
     @ColumnInfo(name = "description")
-    private String description;
+    private final String description;
     @ColumnInfo(name = "url")
-    private String url;
+    private final String url;
     @ColumnInfo(name = "category")
-    private String category;
+    private final String category;
     @ColumnInfo(name = "language")
-    private String language;
+    private final String language;
     @ColumnInfo(name = "country")
-    private String country;
+    private final String country;
 
     /**
      * @param id          of the news source, example <b>cnn</b>
@@ -36,7 +36,7 @@ public class Source {
      * @param language    language that this news source writes in, example <b>en</b>
      * @param country     country this news source is based in (and primarily writes about), example <b>au</b>
      */
-    public Source(String id, String name, String description, String url, String category, String language, String country) {
+    public Source(@NonNull String id, String name, String description, String url, String category, String language, String country) {
         this.id = id;
         this.name = name;
         this.description = description;

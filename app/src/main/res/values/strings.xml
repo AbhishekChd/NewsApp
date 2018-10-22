@@ -1,32 +1,12 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">News App</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-
-    <string name="action_settings">Settings</string>
-
-    <!--  Navigation Drawer -->
-    <string name="category_business">Business</string>
-    <string name="category_technology">Technology</string>
-    <string name="category_health">Health</string>
-    <string name="category_science">Science</string>
-    <string name="category_sports">Sports</string>
-
-
     <string name="sample_source">BBC News • 1h</string>
     <string name="sample_title">Why would Putin want to nuke Florida?</string>
     <string name="sample_title_long">PM Narendra Modi\'s frivolous statements won\'t help create wedge between me and Congress: Amarinder Singh</string>
     <string name="sample_description">The Sunshine State is home to Mr Trump\'s golf resort, but bigger targets lie elsewhere in the US.</string>
     <string name="image_desc">Image for the News Post</string>
 
-    <string name="headline_date_format">
-        <xliff:g example="CNN" id="source">%1s</xliff:g> •
-        <xliff:g example="1m" id="days">%2s</xliff:g>
-    </string>
-    <string name="top_stories">Top Stories</string>
-    <string name="category">Category</string>
-    <string name="title_activity_main">MainActivity</string>
     <string name="title_headlines">Headlines</string>
     <string name="title_saved">Saved</string>
     <string name="title_sources">Sources</string>
