@@ -2,14 +2,13 @@ package com.example.abhishek.newsapp.utils;
 
 import android.content.Context;
 import android.databinding.BindingAdapter;
+import android.net.Uri;
 import android.widget.ImageView;
 
 import com.bumptech.glide.request.RequestOptions;
 import com.example.abhishek.newsapp.R;
 
 import java.sql.Timestamp;
-
-import timber.log.Timber;
 
 public class BindingUtils {
     /**
@@ -45,15 +44,20 @@ public class BindingUtils {
     }
 
     /**
-     * Utility method for Image url
+     * Utility method for Image url If image url is valid then it is parsed else
+     * Article url provides url to website and icon finder utility is used to find icon
      *
-     * @param imageView Default view passed for displaying image
-     * @param url       Url of the image
+     * @param imageView  Default view passed for displaying image
+     * @param url        Url of the image
+     * @param articleUrl URL to the article
      */
-    @BindingAdapter({"newsImage"})
-    public static void loadImage(ImageView imageView, String url) {
+    @BindingAdapter({"bind:url", "bind:articleUrl"})
+    public static void loadImage(ImageView imageView, String url, String articleUrl) {
         Context context = imageView.getContext();
-        Timber.d("Image Url : %s", url);
+        if (url == null) {
+            String iconUrl = "https://besticon-demo.herokuapp.com/icon?url=%s&size=80..120..200";
+            url = String.format(iconUrl, Uri.parse(articleUrl).getAuthority());
+        }
         GlideApp.with(imageView)
                 .load(url)
                 .apply(NewsGlideModule.roundedCornerImage(new RequestOptions(), imageView.getContext(), 4))

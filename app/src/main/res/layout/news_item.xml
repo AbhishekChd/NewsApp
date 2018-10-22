@@ -34,7 +34,8 @@
 
         <ImageView
             android:id="@+id/iv_news_image"
-            newsImage="@{news.urlToImage}"
+            app:url="@{news.urlToImage}"
+            app:articleUrl="@{news.url}"
             android:layout_width="82dp"
             android:layout_height="82dp"
             android:contentDescription="@string/image_desc"
