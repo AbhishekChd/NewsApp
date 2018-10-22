@@ -7,11 +7,13 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.abhishek.newsapp.R;
+import com.example.abhishek.newsapp.adapters.NewsAdapter;
 import com.example.abhishek.newsapp.databinding.NewsFragmentBinding;
 import com.example.abhishek.newsapp.models.Article;
 import com.example.abhishek.newsapp.models.Specification;
@@ -19,10 +21,13 @@ import com.example.abhishek.newsapp.network.NewsApi;
 
 import java.util.List;
 
-public class NewsFragment extends Fragment {
+import timber.log.Timber;
+
+public class NewsFragment extends Fragment implements NewsAdapter.NewsAdapterListener {
     public static final String PARAM_CATEGORY = "param-category";
     private NewsApi.Category newsCategory;
     private NewsFragmentBinding binding;
+    private NewsAdapter newsAdapter = new NewsAdapter(null, this);
 
     public static NewsFragment newInstance(NewsApi.Category category) {
         NewsFragment fragment = new NewsFragment();
@@ -46,7 +51,8 @@ public class NewsFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil
                 .inflate(inflater, R.layout.news_fragment, container, false);
-
+        RecyclerView recyclerView = (RecyclerView) binding.getRoot();
+        recyclerView.setAdapter(newsAdapter);
         return binding.getRoot();
     }
 
@@ -60,10 +66,15 @@ public class NewsFragment extends Fragment {
             @Override
             public void onChanged(@Nullable List<Article> articles) {
                 if (articles != null) {
-                    binding.tvNewsItems.setText(String.format("Articles received: %d", articles.size()));
+                    newsAdapter.setArticles(articles);
+                    Timber.d("%s",articles.toString());
                 }
             }
         });
     }
 
+    @Override
+    public void onNewsItemClicked(Article article) {
+
+    }
 }

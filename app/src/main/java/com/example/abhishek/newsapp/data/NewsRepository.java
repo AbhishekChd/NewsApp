@@ -59,7 +59,7 @@ public class NewsRepository {
 
     public LiveData<List<Article>> getHeadlines(final Specification specs) {
 //        fetchFromNetwork(specs);
-        return headlinesDao.getAllArticles();
+        return headlinesDao.getArticleByCategory(specs.getCategory());
     }
 
     private void fetchFromNetwork(final Specification specs) {

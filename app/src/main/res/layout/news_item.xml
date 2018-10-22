@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.example.abhishek.newsapp.utils.BindingUtils" />
+
+        <variable
+            name="news"
+            type="com.example.abhishek.newsapp.models.Article" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="16dp"
+        tools:context=".ui.MainActivity">
+
+        <TextView
+            android:id="@+id/tv_news_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:minLines="3"
+            android:text="@{news.title}"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@id/iv_options"
+            app:layout_constraintStart_toEndOf="@id/iv_news_image"
+            app:layout_constraintTop_toTopOf="@id/iv_news_image"
+            tools:text="@string/sample_title_long" />
+
+        <ImageView
+            android:id="@+id/iv_news_image"
+            android:layout_width="82dp"
+            android:layout_height="82dp"
+            android:src="@color/cardBackground"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_news_source"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{BindingUtils.getSourceAndTime(news.source.name, news.publishedAt)}"
+            android:textColor="@color/colorPrimaryLight"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@id/tv_news_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_news_title"
+            tools:text="@string/sample_source" />
+
+
+        <ImageView
+            android:id="@+id/iv_options"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="4dp"
+            android:paddingEnd="0dp"
+            android:paddingBottom="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_news_title"
+            app:srcCompat="@drawable/ic_more_options" />
+
+        <!--<ImageView-->
+        <!--android:id="@+id/iv_options"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:layout_constraintBottom_toBottomOf="@id/tv_news_source"-->
+        <!--app:layout_constraintEnd_toEndOf="@id/tv_news_title"-->
+        <!--app:srcCompat="@drawable/ic_more_options" />-->
+
+    </android.support.constraint.ConstraintLayout>
+</layout>
