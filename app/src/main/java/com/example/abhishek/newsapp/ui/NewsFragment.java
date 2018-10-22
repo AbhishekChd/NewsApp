@@ -3,6 +3,8 @@ package com.example.abhishek.newsapp.ui;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
+import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -25,9 +27,9 @@ import timber.log.Timber;
 
 public class NewsFragment extends Fragment implements NewsAdapter.NewsAdapterListener {
     public static final String PARAM_CATEGORY = "param-category";
+    private final NewsAdapter newsAdapter = new NewsAdapter(null, this);
     private NewsApi.Category newsCategory;
     private NewsFragmentBinding binding;
-    private final NewsAdapter newsAdapter = new NewsAdapter(null, this);
 
     public static NewsFragment newInstance(NewsApi.Category category) {
         NewsFragment fragment = new NewsFragment();
@@ -51,8 +53,22 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsAdapterLis
                              @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil
                 .inflate(inflater, R.layout.news_fragment, container, false);
-        RecyclerView recyclerView = (RecyclerView) binding.getRoot();
+        RecyclerView recyclerView = binding.rvNewsPosts;
         recyclerView.setAdapter(newsAdapter);
+        recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
+            int mItemOffset = 80;
+
+            @Override
+            public void onDraw(@NonNull Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+                super.onDraw(c, parent, state);
+            }
+
+            @Override
+            public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+                super.getItemOffsets(outRect, view, parent, state);
+                outRect.set(0, mItemOffset, 0, mItemOffset);
+            }
+        });
         return binding.getRoot();
     }
 
@@ -67,7 +83,7 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsAdapterLis
             public void onChanged(@Nullable List<Article> articles) {
                 if (articles != null) {
                     newsAdapter.setArticles(articles);
-                    Timber.d("%s",articles.toString());
+                    Timber.d("%s", articles.toString());
                 }
             }
         });
