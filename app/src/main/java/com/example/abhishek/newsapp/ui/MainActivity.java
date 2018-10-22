@@ -17,10 +17,9 @@ import com.example.abhishek.newsapp.ui.headlines.HeadlinesFragment;
 import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity {
+    private final FragmentManager fragmentManager = getSupportFragmentManager();
     private ActivityMainBinding binding;
     private HeadlinesFragment headlinesFragment;
-    private final FragmentManager fragmentManager = getSupportFragmentManager();
-
     private final BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -68,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setTitle(getString(R.string.app_name));
+            //Remove trailing space from toolbar
+            binding.toolbar.setContentInsetsAbsolute(10, 10);
         }
     }
 }

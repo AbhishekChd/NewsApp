@@ -28,6 +28,7 @@
             android:layout_marginStart="8dp"
             android:minLines="3"
             android:text="@{news.title}"
+            android:textAppearance="@style/AppTheme.Headline.Title"
             android:textColor="@color/colorTextSecondary"
             android:textSize="16sp"
             app:layout_constraintEnd_toStartOf="@id/iv_options"
