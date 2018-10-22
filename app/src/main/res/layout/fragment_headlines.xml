@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.headlines.HeadlinesFragment">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager_headlines"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tablayout_headlines"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabIconTint="@color/colorPrimary"
+                app:tabIndicatorColor="@color/colorPrimary"
+                app:tabIndicatorFullWidth="false"
+                app:tabMode="scrollable"
+                app:tabPaddingEnd="16dp"
+                app:tabPaddingStart="16dp"
+                app:tabSelectedTextColor="@color/colorPrimary"
+                app:tabTextAppearance="@style/AppTheme.Headlines.TabTextAppearance"
+                app:tabTextColor="@color/colorPrimaryLight" />
+        </android.support.v4.view.ViewPager>
+    </android.support.design.widget.CoordinatorLayout>
+</layout>

@@ -38,12 +38,18 @@ public interface NewsApi {
     );
 
     enum Category {
-        business,
-        entertainment,
-        general,
-        health,
-        science,
-        sports,
-        technology
+        business("Business"),
+        entertainment("Entertainment"),
+        general("General"),
+        health("Health"),
+        science("Science"),
+        sports("Sports"),
+        technology("Technology");
+
+        public final String title;
+
+        Category(String title) {
+            this.title = title;
+        }
     }
 }
