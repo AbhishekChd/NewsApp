@@ -3,12 +3,11 @@ package com.example.abhishek.newsapp.ui;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
-import android.graphics.Canvas;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +19,7 @@ import com.example.abhishek.newsapp.databinding.NewsFragmentBinding;
 import com.example.abhishek.newsapp.models.Article;
 import com.example.abhishek.newsapp.models.Specification;
 import com.example.abhishek.newsapp.network.NewsApi;
+import com.example.abhishek.newsapp.utils.RecyclerViewDecoration;
 
 import java.util.List;
 
@@ -55,20 +55,15 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsAdapterLis
                 .inflate(inflater, R.layout.news_fragment, container, false);
         RecyclerView recyclerView = binding.rvNewsPosts;
         recyclerView.setAdapter(newsAdapter);
-        recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
-            int mItemOffset = 80;
+        recyclerView.addItemDecoration(new RecyclerViewDecoration(
+                Math.round(getResources().getDimension(R.dimen.recycler_view_offset))
+        ));
+        if (getContext() != null) {
+            DividerItemDecoration divider = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
+            divider.setDrawable(getResources().getDrawable(R.drawable.recycler_view_divider));
+            recyclerView.addItemDecoration(divider);
+        }
 
-            @Override
-            public void onDraw(@NonNull Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
-                super.onDraw(c, parent, state);
-            }
-
-            @Override
-            public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
-                super.getItemOffsets(outRect, view, parent, state);
-                outRect.set(0, mItemOffset, 0, mItemOffset);
-            }
-        });
         return binding.getRoot();
     }
 

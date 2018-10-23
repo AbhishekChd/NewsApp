@@ -7,4 +7,5 @@
     <color name="colorTextPrimary">#ffffff</color>
     <color name="colorTextSecondary">#000000</color>
     <color name="cardBackground">#ddd</color>
+    <color name="recyclerViewDivider">#61ced7db</color>
 </resources>
