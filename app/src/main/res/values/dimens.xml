@@ -3,4 +3,8 @@
     <dimen name="recycler_view_offset">26dp</dimen>
     <dimen name="recycler_view_divider_height">1dp</dimen>
     <dimen name="recycler_view_divider_radius">10dp</dimen>
+    <dimen name="options_bottom_sheet_icon">46dp</dimen>
+    <dimen name="options_bottom_sheet_small">8dp</dimen>
+    <dimen name="options_bottom_sheet_medium">16dp</dimen>
+    <dimen name="options_bottom_sheet_text">18sp</dimen>
 </resources>

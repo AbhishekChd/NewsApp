@@ -1,4 +1,4 @@
-package com.example.abhishek.newsapp.ui;
+package com.example.abhishek.newsapp.ui.news;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -23,11 +23,14 @@ import com.example.abhishek.newsapp.utils.RecyclerViewDecoration;
 
 import java.util.List;
 
+import timber.log.Timber;
+
 public class NewsFragment extends Fragment implements NewsAdapter.NewsAdapterListener {
     public static final String PARAM_CATEGORY = "param-category";
     private final NewsAdapter newsAdapter = new NewsAdapter(null, this);
     private NewsApi.Category newsCategory;
     private NewsFragmentBinding binding;
+    private OptionsBottomSheet bottomSheet;
 
     public static NewsFragment newInstance(NewsApi.Category category) {
         NewsFragment fragment = new NewsFragment();
@@ -84,5 +87,15 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsAdapterLis
     @Override
     public void onNewsItemClicked(Article article) {
 
+    }
+
+    @Override
+    public void onItemOptionsClicked(Article article) {
+        bottomSheet = OptionsBottomSheet.getInstance(article.getTitle(), article.getUrl());
+        if (getActivity() != null) {
+            bottomSheet.show(getActivity().getSupportFragmentManager(), bottomSheet.getTag());
+        } else {
+            Timber.e("No Parent Activity was found!");
+        }
     }
 }

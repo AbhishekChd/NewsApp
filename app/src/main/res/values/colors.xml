@@ -8,4 +8,5 @@
     <color name="colorTextSecondary">#000000</color>
     <color name="cardBackground">#ddd</color>
     <color name="recyclerViewDivider">#61ced7db</color>
+    <color name="option_item_tint_color">#ad000000</color>
 </resources>

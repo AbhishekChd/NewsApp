@@ -1,4 +1,4 @@
-package com.example.abhishek.newsapp.ui;
+package com.example.abhishek.newsapp.ui.news;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;

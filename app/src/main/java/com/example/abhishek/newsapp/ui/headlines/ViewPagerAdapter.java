@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.example.abhishek.newsapp.network.NewsApi;
-import com.example.abhishek.newsapp.ui.NewsFragment;
+import com.example.abhishek.newsapp.ui.news.NewsFragment;
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {
     private final NewsFragment[] newsFragments;

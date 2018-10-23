@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/options_bottom_sheet_small"
+        android:paddingTop="@dimen/options_bottom_sheet_medium"
+        android:paddingRight="@dimen/options_bottom_sheet_small"
+        android:paddingBottom="@dimen/options_bottom_sheet_medium"
+        tools:context=".ui.news.OptionsBottomSheet">
+
+        <ImageView
+            android:id="@+id/iv_share"
+            style="@style/AppTheme.OptionsBottomSheetImage"
+            android:contentDescription="@string/image_desc_share_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_share" />
+
+        <ImageView
+            android:id="@+id/iv_save"
+            style="@style/AppTheme.OptionsBottomSheetImage"
+            android:layout_marginTop="@dimen/options_bottom_sheet_small"
+            android:contentDescription="@string/image_desc_save_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_share"
+            app:srcCompat="@drawable/ic_save" />
+
+        <ImageView
+            android:id="@+id/iv_open_in_browser"
+            style="@style/AppTheme.OptionsBottomSheetImage"
+            android:layout_marginTop="@dimen/options_bottom_sheet_small"
+            android:contentDescription="@string/image_desc_open_in_browser_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_save"
+            app:srcCompat="@drawable/ic_open_in_browser" />
+
+        <TextView
+            android:id="@+id/tv_share"
+            style="@style/AppTheme.OptionsBottomSheetText"
+            android:text="@string/bottom_sheet_option_share"
+            app:layout_constraintBottom_toBottomOf="@id/iv_share"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_share"
+            app:layout_constraintTop_toTopOf="@id/iv_share" />
+
+        <TextView
+            android:id="@+id/tv_save"
+            style="@style/AppTheme.OptionsBottomSheetText"
+            android:text="@string/bottom_sheet_option_save"
+            app:layout_constraintBottom_toBottomOf="@id/iv_save"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_save"
+            app:layout_constraintTop_toTopOf="@id/iv_save" />
+
+        <TextView
+            android:id="@+id/tv_open_in_browser"
+            style="@style/AppTheme.OptionsBottomSheetText"
+            android:text="@string/bottom_sheet_option_open_in_browser"
+            app:layout_constraintBottom_toBottomOf="@id/iv_open_in_browser"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_open_in_browser"
+            app:layout_constraintTop_toTopOf="@id/iv_open_in_browser" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>
