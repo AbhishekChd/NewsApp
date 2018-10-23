@@ -18,6 +18,6 @@ public interface HeadlinesDao {
     @Query("SELECT * FROM articles")
     LiveData<List<Article>> getAllArticles();
 
-    @Query("SELECT * FROM articles WHERE category=:category")
+    @Query("SELECT * FROM articles WHERE category=:category ORDER BY published_at DESC")
     LiveData<List<Article>> getArticleByCategory(String category);
 }
