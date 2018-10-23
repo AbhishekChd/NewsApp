@@ -1,10 +1,13 @@
 package com.example.abhishek.newsapp.ui.headlines;
 
+import android.content.res.ColorStateList;
 import android.databinding.DataBindingUtil;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.view.ViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -65,10 +68,20 @@ public class HeadlinesFragment extends Fragment {
 
     private void setupTabIcons() {
         TabLayout.Tab tab;
+        ColorStateList colors;
+        if (Build.VERSION.SDK_INT >= 23) {
+            colors = getResources().getColorStateList(R.color.tab_icon_selector, getContext().getTheme());
+        } else {
+            colors = getResources().getColorStateList(R.color.tab_icon_selector);
+        }
+
         for (int i = 0; i < categories.length; i++) {
             tab = binding.tablayoutHeadlines.getTabAt(i);
             if (tab != null) {
                 tab.setIcon(categoryIcons[i]).setText(categories[i]);
+                if (tab.getIcon() != null) {
+                    DrawableCompat.setTintList(tab.getIcon(), colors);
+                }
             }
         }
     }
