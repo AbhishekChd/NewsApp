@@ -53,11 +53,13 @@ public class MainActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         binding.navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        // Add a default fragment
-        headlinesFragment = HeadlinesFragment.newInstance();
-        fragmentManager.beginTransaction()
-                .add(R.id.fragment_container, headlinesFragment)
-                .commit();
+        if (savedInstanceState == null) {
+            // Add a default fragment
+            headlinesFragment = HeadlinesFragment.newInstance();
+            fragmentManager.beginTransaction()
+                    .add(R.id.fragment_container, headlinesFragment)
+                    .commit();
+        }
 
         setupToolbar();
     }
