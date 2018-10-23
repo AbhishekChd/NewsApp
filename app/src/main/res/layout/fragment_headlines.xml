@@ -17,15 +17,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/white"
-                app:tabIconTint="@color/colorPrimary"
+                app:tabIconTint="@color/tab_icon_selector"
                 app:tabIndicatorColor="@color/colorPrimary"
                 app:tabIndicatorFullWidth="false"
                 app:tabMode="scrollable"
                 app:tabPaddingEnd="16dp"
                 app:tabPaddingStart="16dp"
-                app:tabSelectedTextColor="@color/colorPrimary"
                 app:tabTextAppearance="@style/AppTheme.Headlines.TabTextAppearance"
-                app:tabTextColor="@color/colorPrimaryLight" />
+                app:tabTextColor="@color/tab_icon_selector" />
         </android.support.v4.view.ViewPager>
     </android.support.design.widget.CoordinatorLayout>
 </layout>
