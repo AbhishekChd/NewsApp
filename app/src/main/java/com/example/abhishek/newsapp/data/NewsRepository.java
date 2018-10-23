@@ -18,6 +18,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import timber.log.Timber;
 
 public class NewsRepository {
     private static final Object LOCK = new Object();
@@ -59,7 +60,7 @@ public class NewsRepository {
     }
 
     public LiveData<List<Article>> getHeadlines(final Specification specs) {
-//        fetchFromNetwork(specs);
+        fetchFromNetwork(specs);
         return headlinesDao.getArticleByCategory(specs.getCategory());
     }
 
@@ -72,6 +73,13 @@ public class NewsRepository {
         networkCall.enqueue(new Callback<ArticleResponseWrapper>() {
             @Override
             public void onResponse(@NonNull Call<ArticleResponseWrapper> call, @NonNull Response<ArticleResponseWrapper> response) {
+                if (response.raw().cacheResponse() != null) {
+                    Timber.d("Response from cache");
+                }
+
+                if (response.raw().networkResponse() != null) {
+                    Timber.d("Response from server");
+                }
                 if (response.body() != null) {
                     List<Article> articles = response.body().getArticles();
                     for (Article article : articles) {

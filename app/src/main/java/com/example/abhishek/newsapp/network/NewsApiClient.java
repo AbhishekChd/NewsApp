@@ -45,11 +45,14 @@ public class NewsApiClient {
                 Interceptor networkInterceptor = new Interceptor() {
                     @Override
                     public Response intercept(Chain chain) throws IOException {
+                        // set max-age and max-stale properties for cache header
                         CacheControl cacheControl = new CacheControl.Builder()
-                                .maxAge(10, TimeUnit.MINUTES)
+                                .maxAge(1, TimeUnit.HOURS)
+                                .maxStale(3, TimeUnit.DAYS)
                                 .build();
                         return chain.proceed(chain.request())
                                 .newBuilder()
+                                .removeHeader("Pragma")
                                 .header("Cache-Control", cacheControl.toString())
                                 .build();
                     }

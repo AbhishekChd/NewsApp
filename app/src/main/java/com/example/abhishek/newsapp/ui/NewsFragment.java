@@ -23,8 +23,6 @@ import com.example.abhishek.newsapp.utils.RecyclerViewDecoration;
 
 import java.util.List;
 
-import timber.log.Timber;
-
 public class NewsFragment extends Fragment implements NewsAdapter.NewsAdapterListener {
     public static final String PARAM_CATEGORY = "param-category";
     private final NewsAdapter newsAdapter = new NewsAdapter(null, this);
@@ -78,7 +76,6 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsAdapterLis
             public void onChanged(@Nullable List<Article> articles) {
                 if (articles != null) {
                     newsAdapter.setArticles(articles);
-                    Timber.d("%s", articles.toString());
                 }
             }
         });
