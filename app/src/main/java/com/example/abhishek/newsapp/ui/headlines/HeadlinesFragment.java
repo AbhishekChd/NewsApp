@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +51,8 @@ public class HeadlinesFragment extends Fragment {
 
         this.binding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_headlines, container, false);
+
+        ViewCompat.setElevation(binding.tablayoutHeadlines, getResources().getDimension(R.dimen.tab_layout_elevation));
 
         if (getActivity() != null) {
             ViewPagerAdapter viewPager = new ViewPagerAdapter(getActivity().getSupportFragmentManager(), categories);
