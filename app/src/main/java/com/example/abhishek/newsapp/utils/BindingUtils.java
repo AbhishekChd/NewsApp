@@ -9,8 +9,14 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.abhishek.newsapp.R;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class BindingUtils {
+    private static final TimeZone timeZone = TimeZone.getTimeZone("UTC");
+
     /**
      * @param utcTimeString Time in UTC:+00 - Example: 2018-05-10T10:13:00Z
      * @return Formatted String of time elapsed by now in min/hrs/days
@@ -65,10 +71,28 @@ public class BindingUtils {
                 .into(imageView);
     }
 
+    /**
+     * Truncate extra characters at the end of each content
+     * Remove string at end similar to [18040+ chars]
+     *
+     * @param content Unformatted content
+     * @return Formatted contented
+     */
     public static String truncateExtra(String content) {
         if (content == null)
             return "";
         return content.replaceAll("(\\[\\+\\d+ chars])", "");
+    }
+
+    /**
+     * Format date and time for details activity
+     *
+     * @param date Timestamp for current date
+     * @return Formatted date of format <b>01 Oct 2018 | 02:45PM</b>
+     */
+    public static String formatDateForDetails(Timestamp date) {
+        SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy | hh:mm aaa", Locale.getDefault());
+        return format.format(new Date(date.getTime()));
     }
 }
 

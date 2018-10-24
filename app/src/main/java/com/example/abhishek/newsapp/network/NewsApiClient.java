@@ -2,10 +2,12 @@ package com.example.abhishek.newsapp.network;
 
 import android.content.Context;
 
+import com.example.abhishek.newsapp.utils.DateDeserializer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
@@ -72,7 +74,7 @@ public class NewsApiClient {
 
                 // Configure GSON
                 Gson gson = new GsonBuilder()
-                        .setDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
+                        .registerTypeAdapter(Date.class, new DateDeserializer())
                         .create();
 
                 // Retrofit Builder
