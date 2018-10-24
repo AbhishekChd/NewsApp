@@ -72,6 +72,29 @@ public class BindingUtils {
     }
 
     /**
+     * Utility method for Image url If image url is valid then it is parsed else
+     * Article url provides url to website and icon finder utility is used to find icon
+     * This puts a radius 0 to image
+     *
+     * @param imageView  Default view passed for displaying image
+     * @param url        Url of the image
+     * @param articleUrl URL to the article
+     */
+    @BindingAdapter({"bind:urlToImage", "bind:articleUrl"})
+    public static void loadImage(ImageView imageView, String url, String articleUrl) {
+        Context context = imageView.getContext();
+        if (url == null) {
+            String iconUrl = "https://besticon-demo.herokuapp.com/icon?url=%s&size=80..120..200";
+            url = String.format(iconUrl, Uri.parse(articleUrl).getAuthority());
+        }
+        GlideApp.with(imageView)
+                .load(url)
+                .apply(NewsGlideModule.roundedCornerImage(new RequestOptions(), imageView.getContext(), 0))
+                .placeholder(context.getResources().getDrawable(R.color.cardBackground))
+                .into(imageView);
+    }
+
+    /**
      * Truncate extra characters at the end of each content
      * Remove string at end similar to [18040+ chars]
      *
@@ -91,7 +114,7 @@ public class BindingUtils {
      * @return Formatted date of format <b>01 Oct 2018 | 02:45PM</b>
      */
     public static String formatDateForDetails(Timestamp date) {
-        SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy | hh:mm aaa zzz", Locale.getDefault());
+        SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy | hh:mm aaa", Locale.getDefault());
         return format.format(new Date(date.getTime()));
     }
 }

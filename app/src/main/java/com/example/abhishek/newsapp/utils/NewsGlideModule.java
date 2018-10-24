@@ -17,7 +17,10 @@ public final class NewsGlideModule extends AppGlideModule {
     @NonNull
     @GlideOption
     public static RequestOptions roundedCornerImage(RequestOptions options, @NonNull Context context, int radius) {
-        int px = Math.round(radius * (context.getResources().getDisplayMetrics().xdpi / DisplayMetrics.DENSITY_DEFAULT));
-        return options.transforms(new CenterCrop(),new RoundedCorners(px));
+        if (radius > 0) {
+            int px = Math.round(radius * (context.getResources().getDisplayMetrics().xdpi / DisplayMetrics.DENSITY_DEFAULT));
+            return options.transforms(new CenterCrop(), new RoundedCorners(px));
+        }
+        return options.transforms(new CenterCrop());
     }
 }
