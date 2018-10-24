@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -34,14 +35,14 @@
 
         <ImageView
             android:id="@+id/iv_news_image"
-            app:url="@{news.urlToImage}"
-            app:articleUrl="@{news.url}"
             android:layout_width="82dp"
             android:layout_height="82dp"
             android:contentDescription="@string/image_desc"
             android:src="@color/cardBackground"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            bind:articleUrl="@{news.url}"
+            bind:url="@{news.urlToImage}" />
 
         <TextView
             android:id="@+id/tv_news_source"

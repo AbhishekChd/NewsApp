@@ -66,6 +66,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
             super(binding.getRoot());
             this.binding = binding;
             this.binding.ivOptions.setOnClickListener(this);
+            this.binding.getRoot().setOnClickListener(this);
         }
 
         @Override

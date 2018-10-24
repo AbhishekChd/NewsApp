@@ -2,6 +2,7 @@ package com.example.abhishek.newsapp.ui.news;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -86,7 +87,10 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsAdapterLis
 
     @Override
     public void onNewsItemClicked(Article article) {
-
+        Timber.d("Recieved article");
+        Intent intent = new Intent(getContext(), DetailActivity.class);
+        intent.putExtra(DetailActivity.PARAM_ARTICLE, article);
+        startActivity(intent);
     }
 
     @Override

@@ -17,4 +17,5 @@
     <string name="bottom_sheet_option_save">Save for later</string>
     <string name="bottom_sheet_option_share">Share</string>
     <string name="bottom_sheet_option_open_in_browser">Open in browser</string>
+    <string name="button_read_full_story">read full story</string>
 </resources>

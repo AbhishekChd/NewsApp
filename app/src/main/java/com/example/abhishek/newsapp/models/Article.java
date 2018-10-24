@@ -5,6 +5,8 @@ import android.arch.persistence.room.Embedded;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import com.google.gson.annotations.Expose;
 
@@ -15,7 +17,7 @@ import java.sql.Timestamp;
  * Along with the {@link ArticleSource} of News Article
  */
 @Entity(tableName = "articles", indices = {@Index(value = "title", unique = true)})
-public class Article {
+public class Article implements Parcelable {
     @PrimaryKey(autoGenerate = true)
     @Expose(serialize = false, deserialize = false)
     public int id;
@@ -132,4 +134,50 @@ public class Article {
                 ", saveDate=" + saveDate +
                 '}';
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.id);
+        dest.writeString(this.author);
+        dest.writeString(this.title);
+        dest.writeString(this.description);
+        dest.writeString(this.url);
+        dest.writeSerializable(this.publishedAt);
+        dest.writeString(this.urlToImage);
+        dest.writeParcelable(this.source, flags);
+        dest.writeString(this.content);
+        dest.writeString(this.category);
+        dest.writeSerializable(this.saveDate);
+    }
+
+    protected Article(Parcel in) {
+        this.id = in.readInt();
+        this.author = in.readString();
+        this.title = in.readString();
+        this.description = in.readString();
+        this.url = in.readString();
+        this.publishedAt = (Timestamp) in.readSerializable();
+        this.urlToImage = in.readString();
+        this.source = in.readParcelable(ArticleSource.class.getClassLoader());
+        this.content = in.readString();
+        this.category = in.readString();
+        this.saveDate = (Timestamp) in.readSerializable();
+    }
+
+    public static final Parcelable.Creator<Article> CREATOR = new Parcelable.Creator<Article>() {
+        @Override
+        public Article createFromParcel(Parcel source) {
+            return new Article(source);
+        }
+
+        @Override
+        public Article[] newArray(int size) {
+            return new Article[size];
+        }
+    };
 }

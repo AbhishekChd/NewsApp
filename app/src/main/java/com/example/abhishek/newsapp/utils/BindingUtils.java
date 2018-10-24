@@ -52,7 +52,7 @@ public class BindingUtils {
      * @param articleUrl URL to the article
      */
     @BindingAdapter({"bind:url", "bind:articleUrl"})
-    public static void loadImage(ImageView imageView, String url, String articleUrl) {
+    public static void loadThumbnailImage(ImageView imageView, String url, String articleUrl) {
         Context context = imageView.getContext();
         if (url == null) {
             String iconUrl = "https://besticon-demo.herokuapp.com/icon?url=%s&size=80..120..200";
@@ -61,6 +61,16 @@ public class BindingUtils {
         GlideApp.with(imageView)
                 .load(url)
                 .apply(NewsGlideModule.roundedCornerImage(new RequestOptions(), imageView.getContext(), 4))
+                .placeholder(context.getResources().getDrawable(R.color.cardBackground))
+                .into(imageView);
+    }
+
+    @BindingAdapter("bind:url")
+    public static void loadImage(ImageView imageView, String url) {
+        Context context = imageView.getContext();
+        GlideApp.with(imageView)
+                .load(url)
+                .centerCrop()
                 .placeholder(context.getResources().getDrawable(R.color.cardBackground))
                 .into(imageView);
     }

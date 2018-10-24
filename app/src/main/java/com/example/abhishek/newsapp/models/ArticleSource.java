@@ -1,13 +1,15 @@
 package com.example.abhishek.newsapp.models;
 
 import android.arch.persistence.room.ColumnInfo;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 /**
  * Source of the news article
  * A minimized version of {@link Source} returned with {@link Article}
  * Only the mandatory details are included
  */
-public class ArticleSource {
+public class ArticleSource implements Parcelable {
     @ColumnInfo(name = "id")
     private final String id;
     @ColumnInfo(name = "name")
@@ -37,4 +39,32 @@ public class ArticleSource {
                 ", name='" + name + '\'' +
                 '}';
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.id);
+        dest.writeString(this.name);
+    }
+
+    protected ArticleSource(Parcel in) {
+        this.id = in.readString();
+        this.name = in.readString();
+    }
+
+    public static final Parcelable.Creator<ArticleSource> CREATOR = new Parcelable.Creator<ArticleSource>() {
+        @Override
+        public ArticleSource createFromParcel(Parcel source) {
+            return new ArticleSource(source);
+        }
+
+        @Override
+        public ArticleSource[] newArray(int size) {
+            return new ArticleSource[size];
+        }
+    };
 }
