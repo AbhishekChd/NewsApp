@@ -91,7 +91,7 @@ public class BindingUtils {
      * @return Formatted date of format <b>01 Oct 2018 | 02:45PM</b>
      */
     public static String formatDateForDetails(Timestamp date) {
-        SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy | hh:mm aaa", Locale.getDefault());
+        SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy | hh:mm aaa zzz", Locale.getDefault());
         return format.format(new Date(date.getTime()));
     }
 }
