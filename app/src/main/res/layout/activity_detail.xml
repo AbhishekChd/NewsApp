@@ -61,7 +61,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/guideline_left"
-                app:layout_constraintTop_toBottomOf="@id/iv_news_image" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_news_title" />
 
             <TextView
                 android:id="@+id/tv_news_source"
@@ -79,15 +79,15 @@
                 android:id="@+id/tv_news_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="8dp"
                 android:lineSpacingMultiplier="1.1"
                 android:text="@{article.title}"
                 android:textColor="@color/colorTextSecondary"
-                android:textSize="28sp"
+                android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@id/guideline_right"
                 app:layout_constraintStart_toStartOf="@id/guideline_left"
-                app:layout_constraintTop_toBottomOf="@id/tv_news_source"
+                app:layout_constraintTop_toBottomOf="@id/iv_news_image"
                 tools:text="@string/sample_title" />
 
             <TextView
@@ -102,7 +102,8 @@
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="@id/guideline_right"
                 app:layout_constraintStart_toStartOf="@id/guideline_left"
-                app:layout_constraintTop_toBottomOf="@id/tv_news_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_news_source"
+                tools:layout_editor_absoluteY="365dp"
                 tools:text="@string/sample_description" />
 
             <TextView
