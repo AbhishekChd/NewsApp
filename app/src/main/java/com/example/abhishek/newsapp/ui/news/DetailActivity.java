@@ -5,6 +5,7 @@ import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.example.abhishek.newsapp.R;
@@ -13,12 +14,24 @@ import com.example.abhishek.newsapp.models.Article;
 
 public class DetailActivity extends AppCompatActivity {
     public static final String PARAM_ARTICLE = "param-article";
+    private ActivityDetailBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityDetailBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_detail);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_detail);
 
+        setSupportActionBar(binding.toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
+        setupArticleAndListener();
+    }
+
+    /**
+     * Extracts Article from Arguments and Adds button listeners
+     */
+    private void setupArticleAndListener() {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null && bundle.containsKey(PARAM_ARTICLE)) {
             final Article article = bundle.getParcelable(PARAM_ARTICLE);
@@ -44,5 +57,15 @@ public class DetailActivity extends AppCompatActivity {
                 });
             }
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
