@@ -65,14 +65,10 @@ public class BindingUtils {
                 .into(imageView);
     }
 
-    @BindingAdapter("bind:url")
-    public static void loadImage(ImageView imageView, String url) {
-        Context context = imageView.getContext();
-        GlideApp.with(imageView)
-                .load(url)
-                .centerCrop()
-                .placeholder(context.getResources().getDrawable(R.color.cardBackground))
-                .into(imageView);
+    public static String truncateExtra(String content) {
+        if (content == null)
+            return "";
+        return content.replaceAll("(\\[\\+\\d+ chars])", "");
     }
 }
 
