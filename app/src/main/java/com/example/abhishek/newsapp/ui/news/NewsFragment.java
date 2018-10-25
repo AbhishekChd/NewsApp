@@ -13,6 +13,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 
 import com.example.abhishek.newsapp.R;
 import com.example.abhishek.newsapp.adapters.NewsAdapter;
@@ -28,6 +30,8 @@ import timber.log.Timber;
 
 public class NewsFragment extends Fragment implements NewsAdapter.NewsAdapterListener {
     public static final String PARAM_CATEGORY = "param-category";
+    final LayoutAnimationController controller =
+            AnimationUtils.loadLayoutAnimation(getContext(), R.anim.layout_animation_fall_down);
     private final NewsAdapter newsAdapter = new NewsAdapter(null, this);
     private NewsApi.Category newsCategory;
     private NewsFragmentBinding binding;
@@ -79,7 +83,9 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsAdapterLis
             @Override
             public void onChanged(@Nullable List<Article> articles) {
                 if (articles != null) {
+                    binding.rvNewsPosts.setLayoutAnimation(controller);
                     newsAdapter.setArticles(articles);
+                    binding.rvNewsPosts.scheduleLayoutAnimation();
                 }
             }
         });
