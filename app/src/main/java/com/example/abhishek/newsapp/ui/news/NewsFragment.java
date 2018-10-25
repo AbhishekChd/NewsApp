@@ -30,8 +30,6 @@ import timber.log.Timber;
 
 public class NewsFragment extends Fragment implements NewsAdapter.NewsAdapterListener {
     public static final String PARAM_CATEGORY = "param-category";
-    final LayoutAnimationController controller =
-            AnimationUtils.loadLayoutAnimation(getContext(), R.anim.layout_animation_fall_down);
     private final NewsAdapter newsAdapter = new NewsAdapter(null, this);
     private NewsApi.Category newsCategory;
     private NewsFragmentBinding binding;
@@ -83,6 +81,8 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsAdapterLis
             @Override
             public void onChanged(@Nullable List<Article> articles) {
                 if (articles != null) {
+                    final LayoutAnimationController controller =
+                            AnimationUtils.loadLayoutAnimation(getContext(), R.anim.layout_animation_fall_down);
                     binding.rvNewsPosts.setLayoutAnimation(controller);
                     newsAdapter.setArticles(articles);
                     binding.rvNewsPosts.scheduleLayoutAnimation();
