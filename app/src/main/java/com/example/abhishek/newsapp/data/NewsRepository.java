@@ -4,27 +4,19 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Observer;
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.example.abhishek.newsapp.models.Article;
-import com.example.abhishek.newsapp.models.ArticleResponseWrapper;
 import com.example.abhishek.newsapp.models.Specification;
-import com.example.abhishek.newsapp.network.NewsApi;
 import com.example.abhishek.newsapp.network.NewsApiClient;
 
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import timber.log.Timber;
 
 public class NewsRepository {
     private static final Object LOCK = new Object();
     private static NewsRepository sInstance;
 
-    private final NewsApi newsApiService;
+    private final NewsApiClient newsApiService;
     private final HeadlinesDao headlinesDao;
     private final AppExecutors mExecutor;
     private final MutableLiveData<List<Article>> networkArticleLiveData;
@@ -60,39 +52,16 @@ public class NewsRepository {
     }
 
     public LiveData<List<Article>> getHeadlines(final Specification specs) {
-        fetchFromNetwork(specs);
-        return headlinesDao.getArticleByCategory(specs.getCategory());
-    }
-
-    private void fetchFromNetwork(final Specification specs) {
-        Call<ArticleResponseWrapper> networkCall = newsApiService.getHeadlines(
-                specs.getCategory(),
-                specs.getCountry()
-        );
-
-        networkCall.enqueue(new Callback<ArticleResponseWrapper>() {
+        final LiveData<List<Article>> networkData = newsApiService.getHeadlines(specs);
+        networkData.observeForever(new Observer<List<Article>>() {
             @Override
-            public void onResponse(@NonNull Call<ArticleResponseWrapper> call, @NonNull Response<ArticleResponseWrapper> response) {
-                if (response.raw().cacheResponse() != null) {
-                    Timber.d("Response from cache");
-                }
-
-                if (response.raw().networkResponse() != null) {
-                    Timber.d("Response from server");
-                }
-                if (response.body() != null) {
-                    List<Article> articles = response.body().getArticles();
-                    for (Article article : articles) {
-                        article.setCategory(specs.getCategory());
-                    }
+            public void onChanged(@Nullable List<Article> articles) {
+                if (articles != null) {
                     networkArticleLiveData.setValue(articles);
+                    networkData.removeObserver(this);
                 }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<ArticleResponseWrapper> call, @NonNull Throwable t) {
-
             }
         });
+        return headlinesDao.getArticleByCategory(specs.getCategory());
     }
 }
