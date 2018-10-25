@@ -3,6 +3,7 @@ package com.example.abhishek.newsapp.ui.news;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -21,11 +22,28 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_detail);
 
+        makeUiFullscreen();
+        setupToolbar();
+        setupArticleAndListener();
+    }
+
+    private void setupToolbar() {
         setSupportActionBar(binding.toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayShowTitleEnabled(false);
         }
-        setupArticleAndListener();
+    }
+
+    private void makeUiFullscreen() {
+        // When applying fullscreen layout, transparent bar works only for VERSION < 21
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            binding.getRoot().setFitsSystemWindows(true);
+        }
+        // Make UI fullscreen and make it load stable
+        int uiOptions = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
+
+        getWindow().getDecorView().setSystemUiVisibility(uiOptions);
     }
 
     /**
