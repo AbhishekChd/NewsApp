@@ -82,6 +82,7 @@ public class DetailActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
+                overridePendingTransition(R.anim.fade_enter_transition, R.anim.slide_down_animation);
                 return true;
         }
         return super.onOptionsItemSelected(item);

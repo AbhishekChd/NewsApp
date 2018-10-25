@@ -97,6 +97,7 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsAdapterLis
         Intent intent = new Intent(getContext(), DetailActivity.class);
         intent.putExtra(DetailActivity.PARAM_ARTICLE, article);
         startActivity(intent);
+        getActivity().overridePendingTransition(R.anim.slide_up_animation, R.anim.fade_exit_transition);
     }
 
     @Override
