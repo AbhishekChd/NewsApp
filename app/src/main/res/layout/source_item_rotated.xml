@@ -59,10 +59,10 @@
             tools:text="@string/sample_category" />
 
         <ImageButton
-            android:background="?selectableItemBackgroundBorderless"
             android:id="@+id/imageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="?selectableItemBackgroundBorderless"
             android:paddingStart="6dp"
             android:paddingEnd="6dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -73,8 +73,10 @@
             android:id="@+id/tv_source_desc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="16dp"
             android:alpha="1"
+            android:lineSpacingMultiplier="1.3"
             android:text="@{source.description}"
             android:textColor="@color/colorTextSecondary"
             android:textSize="18sp"
