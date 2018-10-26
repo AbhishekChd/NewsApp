@@ -7,6 +7,8 @@ import android.support.annotation.NonNull;
 
 import com.example.abhishek.newsapp.models.Article;
 import com.example.abhishek.newsapp.models.ArticleResponseWrapper;
+import com.example.abhishek.newsapp.models.Source;
+import com.example.abhishek.newsapp.models.SourceResponseWrapper;
 import com.example.abhishek.newsapp.models.Specification;
 import com.example.abhishek.newsapp.utils.DateDeserializer;
 import com.google.gson.Gson;
@@ -136,5 +138,38 @@ public class NewsApiClient {
             }
         });
         return networkArticleLiveData;
+    }
+
+    public LiveData<List<Source>> getSources(final Specification specs) {
+        final MutableLiveData<List<Source>> networkSourcesLiveData = new MutableLiveData<>();
+
+        Call<SourceResponseWrapper> networkCall = sNewsApi.getSources(
+                specs.getCategory(),
+                specs.getCountry(),
+                null
+        );
+
+        networkCall.enqueue(new Callback<SourceResponseWrapper>() {
+            @Override
+            public void onResponse(@NonNull Call<SourceResponseWrapper> call, @NonNull retrofit2.Response<SourceResponseWrapper> response) {
+                if (response.raw().cacheResponse() != null) {
+                    Timber.d("Response from cache");
+                }
+
+                if (response.raw().networkResponse() != null) {
+                    Timber.d("Response from server");
+                }
+                if (response.body() != null) {
+                    networkSourcesLiveData.setValue(response.body().getSources());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<SourceResponseWrapper> call, @NonNull Throwable t) {
+
+            }
+        });
+        return networkSourcesLiveData;
+
     }
 }

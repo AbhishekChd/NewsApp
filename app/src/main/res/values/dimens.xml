@@ -1,6 +1,7 @@
 <resources>
     <dimen name="tab_layout_elevation">2dp</dimen>
-    <dimen name="recycler_view_offset">26dp</dimen>
+    <dimen name="rv_vertical_offset">26dp</dimen>
+    <dimen name="rv_horizontal_offset">8dp</dimen>
     <dimen name="recycler_view_divider_height">1dp</dimen>
     <dimen name="recycler_view_divider_radius">10dp</dimen>
     <dimen name="options_bottom_sheet_icon">46dp</dimen>

@@ -33,7 +33,6 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsAdapterLis
     private final NewsAdapter newsAdapter = new NewsAdapter(null, this);
     private NewsApi.Category newsCategory;
     private NewsFragmentBinding binding;
-    private OptionsBottomSheet bottomSheet;
 
     public static NewsFragment newInstance(NewsApi.Category category) {
         NewsFragment fragment = new NewsFragment();
@@ -60,7 +59,8 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsAdapterLis
         RecyclerView recyclerView = binding.rvNewsPosts;
         recyclerView.setAdapter(newsAdapter);
         recyclerView.addItemDecoration(new RecyclerViewDecoration(
-                Math.round(getResources().getDimension(R.dimen.recycler_view_offset))
+                Math.round(getResources().getDimension(R.dimen.rv_horizontal_offset)),
+                Math.round(getResources().getDimension(R.dimen.rv_vertical_offset))
         ));
         if (getContext() != null) {
             DividerItemDecoration divider = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
@@ -102,7 +102,7 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsAdapterLis
 
     @Override
     public void onItemOptionsClicked(Article article) {
-        bottomSheet = OptionsBottomSheet.getInstance(article.getTitle(), article.getUrl());
+        OptionsBottomSheet bottomSheet = OptionsBottomSheet.getInstance(article.getTitle(), article.getUrl());
         if (getActivity() != null) {
             bottomSheet.show(getActivity().getSupportFragmentManager(), bottomSheet.getTag());
         } else {

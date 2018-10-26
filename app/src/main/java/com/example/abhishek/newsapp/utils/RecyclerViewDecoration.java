@@ -10,10 +10,12 @@ import android.view.View;
  * Custom Item Decoration to set top and bottpm offset for showing the list
  */
 public class RecyclerViewDecoration extends RecyclerView.ItemDecoration {
-    private final int mItemOffset;
+    private final int mHorizontalOffset;
+    private final int mVerticalOffset;
 
-    public RecyclerViewDecoration(int offset) {
-        mItemOffset = offset;
+    public RecyclerViewDecoration(int horizontalOffset, int verticalOffset) {
+        mVerticalOffset = verticalOffset;
+        mHorizontalOffset = horizontalOffset;
     }
 
     @Override
@@ -24,7 +26,7 @@ public class RecyclerViewDecoration extends RecyclerView.ItemDecoration {
     @Override
     public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
         super.getItemOffsets(outRect, view, parent, state);
-        outRect.set(0, mItemOffset, 0, mItemOffset);
+        outRect.set(mHorizontalOffset, mVerticalOffset, mHorizontalOffset, mVerticalOffset);
     }
 
 }

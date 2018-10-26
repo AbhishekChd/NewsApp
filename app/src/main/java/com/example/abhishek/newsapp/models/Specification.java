@@ -15,6 +15,15 @@ public class Specification {
     private String category;
     // Default country
     private String country = Locale.getDefault().getCountry().toLowerCase();
+    private String language = null;
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
 
     public String getCategory() {
         return category;

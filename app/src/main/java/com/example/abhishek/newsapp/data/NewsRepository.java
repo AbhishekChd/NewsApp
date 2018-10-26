@@ -7,6 +7,7 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 
 import com.example.abhishek.newsapp.models.Article;
+import com.example.abhishek.newsapp.models.Source;
 import com.example.abhishek.newsapp.models.Specification;
 import com.example.abhishek.newsapp.network.NewsApiClient;
 
@@ -18,15 +19,19 @@ public class NewsRepository {
 
     private final NewsApiClient newsApiService;
     private final HeadlinesDao headlinesDao;
+    private final SourcesDao sourcesDao;
     private final AppExecutors mExecutor;
     private final MutableLiveData<List<Article>> networkArticleLiveData;
+    private final MutableLiveData<List<Source>> networkSourceLiveData;
 
     // required private constructor for Singleton pattern
     private NewsRepository(Context context) {
         newsApiService = NewsApiClient.getInstance(context);
         headlinesDao = NewsDatabase.getInstance(context).headlinesDao();
+        sourcesDao = NewsDatabase.getInstance(context).sourcesDao();
         mExecutor = AppExecutors.getInstance();
         networkArticleLiveData = new MutableLiveData<>();
+        networkSourceLiveData = new MutableLiveData<>();
         networkArticleLiveData.observeForever(new Observer<List<Article>>() {
             @Override
             public void onChanged(@Nullable final List<Article> articles) {
@@ -35,6 +40,19 @@ public class NewsRepository {
                         @Override
                         public void run() {
                             headlinesDao.bulkInsert(articles);
+                        }
+                    });
+                }
+            }
+        });
+        networkSourceLiveData.observeForever(new Observer<List<Source>>() {
+            @Override
+            public void onChanged(@Nullable final List<Source> sources) {
+                if (sources != null) {
+                    mExecutor.getDiskIO().execute(new Runnable() {
+                        @Override
+                        public void run() {
+                            sourcesDao.bulkInsert(sources);
                         }
                     });
                 }
@@ -63,5 +81,19 @@ public class NewsRepository {
             }
         });
         return headlinesDao.getArticleByCategory(specs.getCategory());
+    }
+
+    public LiveData<List<Source>> getSources(final Specification specs) {
+        final LiveData<List<Source>> networkData = newsApiService.getSources(specs);
+        networkData.observeForever(new Observer<List<Source>>() {
+            @Override
+            public void onChanged(@Nullable List<Source> sources) {
+                if (sources != null) {
+                    networkSourceLiveData.setValue(sources);
+                    networkData.removeObserver(this);
+                }
+            }
+        });
+        return sourcesDao.getAllSources();
     }
 }

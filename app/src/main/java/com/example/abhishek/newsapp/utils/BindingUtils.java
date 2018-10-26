@@ -117,6 +117,19 @@ public class BindingUtils {
         SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy | hh:mm aaa", Locale.getDefault());
         return format.format(new Date(date.getTime()));
     }
+
+    @BindingAdapter("bind:sourceUrl")
+    public static void loadSourceImage(ImageView imageView, String sourceUrl) {
+        Context context = imageView.getContext();
+        String iconUrl = "https://besticon-demo.herokuapp.com/icon?url=%s&size=80..120..200";
+        sourceUrl = String.format(iconUrl, Uri.parse(sourceUrl).getAuthority());
+
+        GlideApp.with(imageView)
+                .load(sourceUrl)
+                .apply(NewsGlideModule.roundedCornerImage(new RequestOptions(), context, 4))
+                .placeholder(context.getResources().getDrawable(R.color.cardBackground))
+                .into(imageView);
+    }
 }
 
 

@@ -55,7 +55,7 @@ public class HeadlinesFragment extends Fragment {
         ViewCompat.setElevation(binding.tablayoutHeadlines, getResources().getDimension(R.dimen.tab_layout_elevation));
 
         if (getActivity() != null) {
-            ViewPagerAdapter viewPager = new ViewPagerAdapter(getActivity().getSupportFragmentManager(), categories);
+            ViewPagerAdapter viewPager = new ViewPagerAdapter(getChildFragmentManager(), categories);
             binding.viewpagerHeadlines.setAdapter(viewPager);
             binding.tablayoutHeadlines.setupWithViewPager(binding.viewpagerHeadlines);
             setupTabIcons();
