@@ -8,7 +8,7 @@
     <color name="colorTextSecondary">#000000</color>
     <color name="cardBackground">#ddd</color>
     <color name="recyclerViewDivider">#61ced7db</color>
-    <color name="gradient_start">#986d6d6d</color>
-    <color name="gradient_end">#61ced7db</color>
+    <color name="gradient_start">#7f000000</color>
+    <color name="gradient_end">#00000000</color>
     <color name="option_item_tint_color">#ad000000</color>
 </resources>
