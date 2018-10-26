@@ -22,7 +22,6 @@ import com.example.abhishek.newsapp.databinding.NewsFragmentBinding;
 import com.example.abhishek.newsapp.models.Article;
 import com.example.abhishek.newsapp.models.Specification;
 import com.example.abhishek.newsapp.network.NewsApi;
-import com.example.abhishek.newsapp.utils.RecyclerViewDecoration;
 
 import java.util.List;
 
@@ -77,11 +76,7 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsAdapterLis
             @Override
             public void onChanged(@Nullable List<Article> articles) {
                 if (articles != null) {
-                    final LayoutAnimationController controller =
-                            AnimationUtils.loadLayoutAnimation(getContext(), R.anim.layout_animation_fall_down);
-                    binding.rvNewsPosts.setLayoutAnimation(controller);
                     newsAdapter.setArticles(articles);
-                    binding.rvNewsPosts.scheduleLayoutAnimation();
                 }
             }
         });
@@ -92,6 +87,10 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsAdapterLis
         Timber.d("Recieved article");
         Intent intent = new Intent(getContext(), DetailActivity.class);
         intent.putExtra(DetailActivity.PARAM_ARTICLE, article);
+        final LayoutAnimationController controller =
+                AnimationUtils.loadLayoutAnimation(getContext(), R.anim.layout_animation_fall_down);
+        binding.rvNewsPosts.setLayoutAnimation(controller);
+        binding.rvNewsPosts.scheduleLayoutAnimation();
         startActivity(intent);
         getActivity().overridePendingTransition(R.anim.slide_up_animation, R.anim.fade_exit_transition);
     }
