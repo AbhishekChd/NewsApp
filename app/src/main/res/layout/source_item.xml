@@ -13,7 +13,12 @@
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:paddingStart="@dimen/rv_horizontal_offset"
+        android:paddingTop="@dimen/rv_vertical_offset"
+        android:paddingEnd="@dimen/rv_horizontal_offset"
+        android:paddingBottom="@dimen/rv_vertical_offset">
 
         <ImageView
             android:id="@+id/iv_source_image"
@@ -57,7 +62,7 @@
             android:id="@+id/imageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#00000000"
+            android:background="?selectableItemBackgroundBorderless"
             android:paddingStart="6dp"
             android:paddingEnd="6dp"
             app:layout_constraintEnd_toEndOf="parent"

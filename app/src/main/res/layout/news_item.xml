@@ -16,6 +16,11 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:paddingStart="@dimen/rv_horizontal_offset"
+        android:paddingTop="@dimen/rv_vertical_offset"
+        android:paddingEnd="@dimen/rv_horizontal_offset"
+        android:paddingBottom="@dimen/rv_vertical_offset"
         tools:context=".ui.MainActivity">
 
         <TextView
@@ -56,14 +61,13 @@
             app:layout_constraintTop_toBottomOf="@id/tv_news_title"
             tools:text="@string/sample_source" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/iv_options"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="?selectableItemBackgroundBorderless"
             android:contentDescription="@string/image_desc"
-            android:paddingStart="4dp"
-            android:paddingEnd="0dp"
-            android:paddingBottom="4dp"
+            android:padding="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/tv_news_title"
             app:srcCompat="@drawable/ic_more_options" />

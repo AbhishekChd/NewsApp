@@ -43,22 +43,23 @@
                 bind:articleUrl="@{article.url}"
                 bind:urlToImage="@{article.urlToImage}" />
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/iv_save"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
+                android:layout_marginEnd="4dp"
+                android:background="?selectableItemBackgroundBorderless"
                 android:contentDescription="@string/image_desc_save_button"
-                android:padding="8dp"
                 app:layout_constraintEnd_toStartOf="@id/iv_share"
                 app:layout_constraintTop_toTopOf="@id/tv_time"
                 app:srcCompat="@drawable/ic_save" />
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/iv_share"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
+                android:background="?selectableItemBackgroundBorderless"
                 android:contentDescription="@string/image_desc_share_button"
-                android:padding="8dp"
                 app:layout_constraintEnd_toStartOf="@id/guideline_right"
                 app:layout_constraintTop_toTopOf="@id/tv_time"
                 app:srcCompat="@drawable/ic_share" />
@@ -152,6 +153,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:background="?actionBarItemBackground"
                 android:fitsSystemWindows="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

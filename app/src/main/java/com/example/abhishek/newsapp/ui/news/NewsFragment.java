@@ -58,10 +58,6 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsAdapterLis
                 .inflate(inflater, R.layout.news_fragment, container, false);
         RecyclerView recyclerView = binding.rvNewsPosts;
         recyclerView.setAdapter(newsAdapter);
-        recyclerView.addItemDecoration(new RecyclerViewDecoration(
-                Math.round(getResources().getDimension(R.dimen.rv_horizontal_offset)),
-                Math.round(getResources().getDimension(R.dimen.rv_vertical_offset))
-        ));
         if (getContext() != null) {
             DividerItemDecoration divider = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
             divider.setDrawable(getResources().getDrawable(R.drawable.recycler_view_divider));
