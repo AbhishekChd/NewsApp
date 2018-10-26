@@ -55,26 +55,34 @@ public class DetailActivity extends AppCompatActivity {
             final Article article = bundle.getParcelable(PARAM_ARTICLE);
             if (article != null) {
                 binding.setArticle(article);
-                binding.ivShare.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(Intent.ACTION_SEND);
-                        String shareText = article.getTitle() + "\n" + article.getUrl();
-                        intent.putExtra(Intent.EXTRA_TEXT, shareText);
-                        intent.setType("text/plain");
-
-                        startActivity(intent);
-                    }
-                });
-                binding.btnReadFull.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(article.getUrl()));
-                        startActivity(intent);
-                    }
-                });
+                setupShareButton(article);
+                setupButtonClickListener(article);
             }
         }
+    }
+
+    private void setupShareButton(final Article article) {
+        binding.ivShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                String shareText = article.getTitle() + "\n" + article.getUrl();
+                intent.putExtra(Intent.EXTRA_TEXT, shareText);
+                intent.setType("text/plain");
+
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void setupButtonClickListener(final Article article) {
+        binding.btnReadFull.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(article.getUrl()));
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
