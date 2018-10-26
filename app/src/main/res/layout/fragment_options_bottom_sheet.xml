@@ -6,64 +6,34 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/options_bottom_sheet_small"
-        android:paddingTop="@dimen/options_bottom_sheet_medium"
-        android:paddingRight="@dimen/options_bottom_sheet_small"
-        android:paddingBottom="@dimen/options_bottom_sheet_medium"
-        tools:context=".ui.news.OptionsBottomSheet">
+        tools:context=".ui.news.rOptionsBottomSheet">
 
-        <ImageView
-            android:id="@+id/iv_share"
-            style="@style/AppTheme.OptionsBottomSheetImage"
-            android:contentDescription="@string/image_desc_share_button"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_share" />
-
-        <ImageView
-            android:id="@+id/iv_save"
-            style="@style/AppTheme.OptionsBottomSheetImage"
-            android:layout_marginTop="@dimen/options_bottom_sheet_small"
-            android:contentDescription="@string/image_desc_save_button"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_share"
-            app:srcCompat="@drawable/ic_save" />
-
-        <ImageView
-            android:id="@+id/iv_open_in_browser"
-            style="@style/AppTheme.OptionsBottomSheetImage"
-            android:layout_marginTop="@dimen/options_bottom_sheet_small"
-            android:contentDescription="@string/image_desc_open_in_browser_button"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_save"
-            app:srcCompat="@drawable/ic_open_in_browser" />
-
-        <TextView
-            android:id="@+id/tv_share"
-            style="@style/AppTheme.OptionsBottomSheetText"
+        <Button
+            android:id="@+id/btn_share"
+            style="@style/AppTheme.OptionsBottomSheetButton"
+            android:drawableStart="@drawable/ic_share"
             android:text="@string/bottom_sheet_option_share"
-            app:layout_constraintBottom_toBottomOf="@id/iv_share"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/iv_share"
-            app:layout_constraintTop_toTopOf="@id/iv_share" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_save"
-            style="@style/AppTheme.OptionsBottomSheetText"
+        <Button
+            android:id="@+id/btn_save_for_later"
+            style="@style/AppTheme.OptionsBottomSheetButton"
+            android:drawableStart="@drawable/ic_save"
             android:text="@string/bottom_sheet_option_save"
-            app:layout_constraintBottom_toBottomOf="@id/iv_save"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/iv_save"
-            app:layout_constraintTop_toTopOf="@id/iv_save" />
+            app:layout_constraintStart_toStartOf="@id/btn_share"
+            app:layout_constraintTop_toBottomOf="@id/btn_share" />
 
-        <TextView
-            android:id="@+id/tv_open_in_browser"
-            style="@style/AppTheme.OptionsBottomSheetText"
+        <Button
+            android:id="@+id/btn_open_in_browser"
+            style="@style/AppTheme.OptionsBottomSheetButton"
+            android:drawableStart="@drawable/ic_open_in_browser"
             android:text="@string/bottom_sheet_option_open_in_browser"
-            app:layout_constraintBottom_toBottomOf="@id/iv_open_in_browser"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/iv_open_in_browser"
-            app:layout_constraintTop_toTopOf="@id/iv_open_in_browser" />
+            app:layout_constraintStart_toStartOf="@id/btn_share"
+            app:layout_constraintTop_toBottomOf="@id/btn_save_for_later" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

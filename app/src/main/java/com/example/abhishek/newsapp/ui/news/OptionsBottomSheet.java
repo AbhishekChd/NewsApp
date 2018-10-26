@@ -53,8 +53,8 @@ public class OptionsBottomSheet extends BottomSheetDialogFragment implements Vie
         final FragmentOptionsBottomSheetBinding binding =
                 DataBindingUtil.inflate(inflater, R.layout.fragment_options_bottom_sheet, container, false);
 
-        binding.tvShare.setOnClickListener(this);
-        binding.tvOpenInBrowser.setOnClickListener(this);
+        binding.btnShare.setOnClickListener(this);
+        binding.btnOpenInBrowser.setOnClickListener(this);
         return binding.getRoot();
     }
 
@@ -62,12 +62,12 @@ public class OptionsBottomSheet extends BottomSheetDialogFragment implements Vie
     public void onClick(View v) {
         Intent intent;
         switch (v.getId()) {
-            case R.id.tv_open_in_browser:
+            case R.id.btn_open_in_browser:
                 intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 fragment.dismiss();
                 startActivity(intent);
                 break;
-            case R.id.tv_share:
+            case R.id.btn_share:
                 String shareText = title + "\n" + url;
                 intent = new Intent(Intent.ACTION_SEND);
                 intent.putExtra(Intent.EXTRA_TEXT, shareText);

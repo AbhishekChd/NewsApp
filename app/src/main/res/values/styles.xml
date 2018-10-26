@@ -21,20 +21,15 @@
 
     </style>
 
-    <style name="AppTheme.OptionsBottomSheetText">
+    <style name="AppTheme.OptionsBottomSheetButton">
         <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center_vertical</item>
-        <item name="android:paddingStart">@dimen/options_bottom_sheet_medium</item>
-        <item name="android:paddingEnd">@dimen/options_bottom_sheet_medium</item>
+        <item name="android:padding">@dimen/options_bottom_sheet_medium</item>
+        <item name="android:background">?selectableItemBackground</item>
         <item name="android:textColor">@color/option_item_tint_color</item>
         <item name="android:textSize">@dimen/options_bottom_sheet_text</item>
+        <item name="android:drawablePadding">@dimen/options_bottom_sheet_medium</item>
     </style>
 
-    <style name="AppTheme.OptionsBottomSheetImage">
-        <item name="android:layout_width">@dimen/options_bottom_sheet_icon</item>
-        <item name="android:layout_height">@dimen/options_bottom_sheet_icon</item>
-        <item name="android:paddingTop">@dimen/options_bottom_sheet_small</item>
-        <item name="android:paddingBottom">@dimen/options_bottom_sheet_small</item>
-    </style>
 </resources>
