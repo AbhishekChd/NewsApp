@@ -3,6 +3,7 @@ package com.example.abhishek.newsapp.utils;
 import android.content.Context;
 import android.databinding.BindingAdapter;
 import android.net.Uri;
+import android.text.TextUtils;
 import android.widget.ImageView;
 
 import com.bumptech.glide.request.RequestOptions;
@@ -129,6 +130,33 @@ public class BindingUtils {
                 .apply(NewsGlideModule.roundedCornerImage(new RequestOptions(), context, 4))
                 .placeholder(context.getResources().getDrawable(R.color.cardBackground))
                 .into(imageView);
+    }
+
+    /**
+     * Utility method for fetching formatted News Source Category and country
+     *
+     * @param category News category
+     * @param country  News Source
+     * @return Formatted as <b>Category  •  Source</b>
+     */
+    public static String getSourceName(String category, String country) {
+        StringBuilder builder = new StringBuilder();
+        builder.append(capitalise(category));
+
+        if (!TextUtils.isEmpty(category) && !TextUtils.isEmpty(country)) {
+            builder.append(" • ");
+        }
+
+        Locale locale = new Locale("en", country);
+        builder.append(locale.getDisplayCountry());
+        return builder.toString();
+    }
+
+    private static String capitalise(String s) {
+        if (TextUtils.isEmpty(s))
+            return s;
+
+        return s.substring(0, 1).toUpperCase() + s.substring(1);
     }
 }
 
