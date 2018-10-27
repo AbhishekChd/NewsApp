@@ -2,12 +2,10 @@ package com.example.abhishek.newsapp.adapters;
 
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 
 import com.example.abhishek.newsapp.R;
 import com.example.abhishek.newsapp.databinding.SourceItemBinding;
@@ -19,6 +17,7 @@ public class SourceAdapter extends RecyclerView.Adapter<SourceAdapter.SourceView
     private final SourceAdapterListener listener;
     private List<Source> sources;
     private LayoutInflater layoutInflater;
+    private int mExpandedPosition = -1;
 
     public SourceAdapter(List<Source> sources, SourceAdapterListener listener) {
         this.sources = sources;
@@ -37,8 +36,20 @@ public class SourceAdapter extends RecyclerView.Adapter<SourceAdapter.SourceView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SourceViewHolder sourceViewHolder, int i) {
+    public void onBindViewHolder(@NonNull final SourceViewHolder sourceViewHolder, final int i) {
         sourceViewHolder.binding.setSource(sources.get(i));
+        final int position = sourceViewHolder.getAdapterPosition();
+        final boolean isExpanded = position == mExpandedPosition;
+        sourceViewHolder.binding.tvSourceDesc.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
+        sourceViewHolder.binding.btnOpen.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
+        sourceViewHolder.binding.getRoot().setActivated(isExpanded);
+        sourceViewHolder.binding.getRoot().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mExpandedPosition = isExpanded ? -1 : position;
+                notifyDataSetChanged();
+            }
+        });
         sourceViewHolder.binding.executePendingBindings();
     }
 
@@ -55,9 +66,7 @@ public class SourceAdapter extends RecyclerView.Adapter<SourceAdapter.SourceView
     }
 
     public interface SourceAdapterListener {
-        void onSourceItemClicked(Source source);
-
-        void onSourceDropDownClicked(View view, ConstraintLayout constraintLayout);
+        void onSourceButtonClicked(Source source);
     }
 
     class SourceViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -67,20 +76,12 @@ public class SourceAdapter extends RecyclerView.Adapter<SourceAdapter.SourceView
         SourceViewHolder(final SourceItemBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
-            this.binding.getRoot().setOnClickListener(this);
-            this.binding.imageButton.setOnClickListener(this);
+            this.binding.btnOpen.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            int index = this.getAdapterPosition();
-
-            if (v instanceof ImageButton) {
-                listener.onSourceDropDownClicked(v, (ConstraintLayout) this.binding.getRoot());
-            } else {
-                listener.onSourceItemClicked(sources.get(index));
-            }
-
+            listener.onSourceButtonClicked(this.binding.getSource());
         }
     }
 }
