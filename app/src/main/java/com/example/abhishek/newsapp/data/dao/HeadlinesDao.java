@@ -1,4 +1,4 @@
-package com.example.abhishek.newsapp.data;
+package com.example.abhishek.newsapp.data.dao;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;

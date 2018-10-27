@@ -1,4 +1,4 @@
-package com.example.abhishek.newsapp.data;
+package com.example.abhishek.newsapp.utils;
 
 import android.os.Handler;
 import android.os.Looper;

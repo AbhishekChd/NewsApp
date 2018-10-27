@@ -6,6 +6,8 @@ import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 
+import com.example.abhishek.newsapp.data.dao.HeadlinesDao;
+import com.example.abhishek.newsapp.data.dao.SourcesDao;
 import com.example.abhishek.newsapp.models.Article;
 import com.example.abhishek.newsapp.models.SavedArticle;
 import com.example.abhishek.newsapp.models.Source;
