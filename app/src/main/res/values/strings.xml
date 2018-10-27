@@ -21,4 +21,7 @@
 
     <string name="image_desc_source_image">Source Image</string>
     <string name="sample_category">General</string>
+
+    <string name="message_item_saved">Article added to Saved</string>
+    <string name="message_item_removed">Article removed from Saved</string>
 </resources>

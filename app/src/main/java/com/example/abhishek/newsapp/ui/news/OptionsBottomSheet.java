@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.abhishek.newsapp.R;
 import com.example.abhishek.newsapp.data.NewsRepository;
@@ -27,6 +28,7 @@ public class OptionsBottomSheet extends BottomSheetDialogFragment implements Vie
     private static final String PARAM_ID = "param-id";
     private static final String PARAM_SAVED = "param-saved";
     private static OptionsBottomSheet fragment;
+    private Toast toast;
     private String title;
     private String url;
     private int id;
@@ -91,10 +93,17 @@ public class OptionsBottomSheet extends BottomSheetDialogFragment implements Vie
                 startActivity(intent);
                 break;
             case R.id.btn_save:
+                if (toast != null) {
+                    toast.cancel();
+                }
                 if (isSaved) {
                     NewsRepository.getInstance(getContext()).removeSaved(id);
+                    toast = Toast.makeText(getContext(), R.string.message_item_removed, Toast.LENGTH_SHORT);
+                    toast.show();
                 } else {
                     NewsRepository.getInstance(getContext()).save(id);
+                    toast = Toast.makeText(getContext(), R.string.message_item_saved, Toast.LENGTH_SHORT);
+                    toast.show();
                 }
                 Timber.d("Saved for id  : %s", id);
                 dismiss();
