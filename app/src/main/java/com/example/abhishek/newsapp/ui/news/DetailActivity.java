@@ -1,21 +1,27 @@
 package com.example.abhishek.newsapp.ui.news;
 
+import android.arch.lifecycle.Observer;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.example.abhishek.newsapp.R;
+import com.example.abhishek.newsapp.data.NewsRepository;
 import com.example.abhishek.newsapp.databinding.ActivityDetailBinding;
 import com.example.abhishek.newsapp.models.Article;
 
 public class DetailActivity extends AppCompatActivity {
     public static final String PARAM_ARTICLE = "param-article";
     private ActivityDetailBinding binding;
+    private Article article;
+    private boolean isSaved;
+    private NewsRepository newsRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +31,38 @@ public class DetailActivity extends AppCompatActivity {
         makeUiFullscreen();
         setupToolbar();
         setupArticleAndListener();
+        newsRepository = NewsRepository.getInstance(this);
+
+        getSavedState();
+
+        binding.ivSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isSaved) {
+                    newsRepository.removeSaved(article.id);
+                } else {
+                    newsRepository.save(article.id);
+                }
+            }
+        });
+    }
+
+    private void getSavedState() {
+        if (article != null) {
+            newsRepository.isSaved(article.id).observe(this, new Observer<Boolean>() {
+                @Override
+                public void onChanged(@Nullable Boolean aBoolean) {
+                    if (aBoolean != null) {
+                        isSaved = aBoolean;
+                        if (isSaved) {
+                            binding.ivSave.setImageResource(R.drawable.ic_saved_item);
+                        } else {
+                            binding.ivSave.setImageResource(R.drawable.ic_save);
+                        }
+                    }
+                }
+            });
+        }
     }
 
     private void setupToolbar() {
@@ -54,6 +92,7 @@ public class DetailActivity extends AppCompatActivity {
         if (bundle != null && bundle.containsKey(PARAM_ARTICLE)) {
             final Article article = bundle.getParcelable(PARAM_ARTICLE);
             if (article != null) {
+                this.article = article;
                 binding.setArticle(article);
                 setupShareButton(article);
                 setupButtonClickListener(article);
