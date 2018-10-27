@@ -8,4 +8,7 @@
     <dimen name="options_bottom_sheet_small">8dp</dimen>
     <dimen name="options_bottom_sheet_medium">16dp</dimen>
     <dimen name="options_bottom_sheet_text">18sp</dimen>
+    <dimen name="snackbar_margin_vertical">8dp</dimen>
+    <dimen name="snackbar_margin_horizontal">16dp</dimen>
+    <dimen name="snackbar_padding">8dp</dimen>
 </resources>

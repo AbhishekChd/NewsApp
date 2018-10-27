@@ -4,6 +4,8 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -14,11 +16,12 @@ import com.example.abhishek.newsapp.R;
 import com.example.abhishek.newsapp.databinding.ActivityMainBinding;
 import com.example.abhishek.newsapp.ui.headlines.HeadlinesFragment;
 import com.example.abhishek.newsapp.ui.news.NewsFragment;
+import com.example.abhishek.newsapp.ui.news.OptionsBottomSheet;
 import com.example.abhishek.newsapp.ui.sources.SourceFragment;
 
 import timber.log.Timber;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OptionsBottomSheet.OptionsBottomSheetListener {
     private final FragmentManager fragmentManager = getSupportFragmentManager();
     private ActivityMainBinding binding;
     private HeadlinesFragment headlinesFragment;
@@ -55,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     };
+    private Snackbar snackbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,5 +90,31 @@ public class MainActivity extends AppCompatActivity {
             //Remove trailing space from toolbar
             binding.toolbar.setContentInsetsAbsolute(10, 10);
         }
+    }
+
+    @Override
+    public void onSaveToggle(String text) {
+        if (snackbar == null) {
+            snackbar = Snackbar.make(binding.coordinator, "Hello", Snackbar.LENGTH_SHORT);
+            final CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) snackbar.getView().getLayoutParams();
+            params.setMargins(
+                    (int) getResources().getDimension(R.dimen.snackbar_margin_vertical),
+                    0,
+                    (int) getResources().getDimension(R.dimen.snackbar_margin_vertical),
+                    (int) getResources().getDimension(R.dimen.snackbar_margin_horizontal)
+            );
+            snackbar.getView().setLayoutParams(params);
+            snackbar.getView().setPadding(
+                    (int) getResources().getDimension(R.dimen.snackbar_padding),
+                    (int) getResources().getDimension(R.dimen.snackbar_padding),
+                    (int) getResources().getDimension(R.dimen.snackbar_padding),
+                    (int) getResources().getDimension(R.dimen.snackbar_padding)
+            );
+        }
+        if (snackbar.isShown()) {
+            snackbar.dismiss();
+        }
+        snackbar.setText(text);
+        snackbar.show();
     }
 }
