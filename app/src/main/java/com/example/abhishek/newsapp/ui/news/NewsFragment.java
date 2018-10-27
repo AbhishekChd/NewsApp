@@ -82,6 +82,8 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsAdapterLis
                 public void onChanged(@Nullable List<Article> articles) {
                     if (articles != null) {
                         newsAdapter.setArticles(articles);
+                    }else{
+                        newsAdapter.notifyDataSetChanged();
                     }
                 }
             });
@@ -116,7 +118,7 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsAdapterLis
 
     @Override
     public void onItemOptionsClicked(Article article) {
-        OptionsBottomSheet bottomSheet = OptionsBottomSheet.getInstance(article.getTitle(), article.getUrl(), article.getId());
+        OptionsBottomSheet bottomSheet = OptionsBottomSheet.getInstance(article.getTitle(), article.getUrl(), article.getId(), showSaved);
         if (getActivity() != null) {
             bottomSheet.show(getActivity().getSupportFragmentManager(), bottomSheet.getTag());
         } else {

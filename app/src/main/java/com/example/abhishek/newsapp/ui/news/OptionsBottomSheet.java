@@ -25,21 +25,24 @@ public class OptionsBottomSheet extends BottomSheetDialogFragment implements Vie
     private static final String PARAM_TITLE = "param-title";
     private static final String PARAM_URL = "param-url";
     private static final String PARAM_ID = "param-id";
+    private static final String PARAM_SAVED = "param-saved";
     private static OptionsBottomSheet fragment;
     private String title;
     private String url;
     private int id;
+    private boolean isSaved;
 
     public OptionsBottomSheet() {
         // Required empty public constructor
     }
 
-    public static OptionsBottomSheet getInstance(String title, String url, int id) {
+    public static OptionsBottomSheet getInstance(String title, String url, int id, boolean isSaved) {
         fragment = new OptionsBottomSheet();
         Bundle args = new Bundle();
         args.putString(PARAM_TITLE, title);
         args.putString(PARAM_URL, url);
         args.putInt(PARAM_ID, id);
+        args.putBoolean(PARAM_SAVED, isSaved);
         fragment.setArguments(args);
         return fragment;
     }
@@ -51,6 +54,7 @@ public class OptionsBottomSheet extends BottomSheetDialogFragment implements Vie
             title = getArguments().getString(PARAM_TITLE);
             url = getArguments().getString(PARAM_URL);
             id = getArguments().getInt(PARAM_ID);
+            isSaved = getArguments().getBoolean(PARAM_SAVED);
         }
     }
 
@@ -60,6 +64,9 @@ public class OptionsBottomSheet extends BottomSheetDialogFragment implements Vie
         final FragmentOptionsBottomSheetBinding binding =
                 DataBindingUtil.inflate(inflater, R.layout.fragment_options_bottom_sheet, container, false);
 
+        if (isSaved) {
+            binding.btnSave.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_saved_item, 0, 0, 0);
+        }
         binding.btnShare.setOnClickListener(this);
         binding.btnOpenInBrowser.setOnClickListener(this);
         binding.btnSave.setOnClickListener(this);
@@ -84,7 +91,11 @@ public class OptionsBottomSheet extends BottomSheetDialogFragment implements Vie
                 startActivity(intent);
                 break;
             case R.id.btn_save:
-                NewsRepository.getInstance(getContext()).save(id);
+                if (isSaved) {
+                    NewsRepository.getInstance(getContext()).removeSaved(id);
+                } else {
+                    NewsRepository.getInstance(getContext()).save(id);
+                }
                 Timber.d("Saved for id  : %s", id);
                 dismiss();
                 break;
