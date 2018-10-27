@@ -13,6 +13,7 @@ import com.example.abhishek.newsapp.BuildConfig;
 import com.example.abhishek.newsapp.R;
 import com.example.abhishek.newsapp.databinding.ActivityMainBinding;
 import com.example.abhishek.newsapp.ui.headlines.HeadlinesFragment;
+import com.example.abhishek.newsapp.ui.news.NewsFragment;
 import com.example.abhishek.newsapp.ui.sources.SourceFragment;
 
 import timber.log.Timber;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private HeadlinesFragment headlinesFragment;
     private SourceFragment sourceFragment;
+    private NewsFragment newsFragment;
     private final BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -34,6 +36,12 @@ public class MainActivity extends AppCompatActivity {
                             .commit();
                     return true;
                 case R.id.navigation_saved:
+                    if (newsFragment == null) {
+                        newsFragment = NewsFragment.newInstance(null);
+                    }
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container, newsFragment)
+                            .commit();
                     return true;
                 case R.id.navigation_sources:
                     if (sourceFragment == null) {

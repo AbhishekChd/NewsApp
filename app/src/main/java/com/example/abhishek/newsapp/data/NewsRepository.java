@@ -10,12 +10,15 @@ import com.example.abhishek.newsapp.data.dao.HeadlinesDao;
 import com.example.abhishek.newsapp.data.dao.SavedDao;
 import com.example.abhishek.newsapp.data.dao.SourcesDao;
 import com.example.abhishek.newsapp.models.Article;
+import com.example.abhishek.newsapp.models.SavedArticle;
 import com.example.abhishek.newsapp.models.Source;
 import com.example.abhishek.newsapp.models.Specification;
 import com.example.abhishek.newsapp.network.NewsApiClient;
 import com.example.abhishek.newsapp.utils.AppExecutors;
 
 import java.util.List;
+
+import timber.log.Timber;
 
 public class NewsRepository {
     private static final Object LOCK = new Object();
@@ -116,6 +119,17 @@ public class NewsRepository {
             @Override
             public void run() {
                 savedDao.removeSaved(articleId);
+            }
+        });
+    }
+
+    public void save(final int articleId) {
+        mExecutor.getDiskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                SavedArticle savedArticle = new SavedArticle(articleId);
+                savedDao.insert(savedArticle);
+                Timber.d("Saved in database for id  : %s", articleId);
             }
         });
     }

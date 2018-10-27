@@ -12,7 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.abhishek.newsapp.R;
+import com.example.abhishek.newsapp.data.NewsRepository;
 import com.example.abhishek.newsapp.databinding.FragmentOptionsBottomSheetBinding;
+
+import timber.log.Timber;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,19 +24,22 @@ public class OptionsBottomSheet extends BottomSheetDialogFragment implements Vie
 
     private static final String PARAM_TITLE = "param-title";
     private static final String PARAM_URL = "param-url";
+    private static final String PARAM_ID = "param-id";
     private static OptionsBottomSheet fragment;
     private String title;
     private String url;
+    private int id;
 
     public OptionsBottomSheet() {
         // Required empty public constructor
     }
 
-    public static OptionsBottomSheet getInstance(String title, String url) {
+    public static OptionsBottomSheet getInstance(String title, String url, int id) {
         fragment = new OptionsBottomSheet();
         Bundle args = new Bundle();
         args.putString(PARAM_TITLE, title);
         args.putString(PARAM_URL, url);
+        args.putInt(PARAM_ID, id);
         fragment.setArguments(args);
         return fragment;
     }
@@ -44,6 +50,7 @@ public class OptionsBottomSheet extends BottomSheetDialogFragment implements Vie
         if (getArguments() != null) {
             title = getArguments().getString(PARAM_TITLE);
             url = getArguments().getString(PARAM_URL);
+            id = getArguments().getInt(PARAM_ID);
         }
     }
 
@@ -55,6 +62,7 @@ public class OptionsBottomSheet extends BottomSheetDialogFragment implements Vie
 
         binding.btnShare.setOnClickListener(this);
         binding.btnOpenInBrowser.setOnClickListener(this);
+        binding.btnSave.setOnClickListener(this);
         return binding.getRoot();
     }
 
@@ -74,6 +82,11 @@ public class OptionsBottomSheet extends BottomSheetDialogFragment implements Vie
                 intent.setType("text/plain");
                 this.dismiss();
                 startActivity(intent);
+                break;
+            case R.id.btn_save:
+                NewsRepository.getInstance(getContext()).save(id);
+                Timber.d("Saved for id  : %s", id);
+                dismiss();
                 break;
         }
     }

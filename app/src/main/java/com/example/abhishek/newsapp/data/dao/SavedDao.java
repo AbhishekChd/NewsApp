@@ -20,7 +20,7 @@ public interface SavedDao {
     LiveData<Boolean> isFavourite(int articleId);
 
     @Query("DELETE FROM saved WHERE news_id=:articleId")
-    LiveData<Boolean> removeSaved(int articleId);
+    void removeSaved(int articleId);
 
     @Query("SELECT articles.* FROM articles, saved " +
             "WHERE articles.id == saved.news_id " +

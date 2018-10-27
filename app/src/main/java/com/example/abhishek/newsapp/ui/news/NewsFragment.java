@@ -32,9 +32,13 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsAdapterLis
     private final NewsAdapter newsAdapter = new NewsAdapter(null, this);
     private NewsApi.Category newsCategory;
     private NewsFragmentBinding binding;
+    private boolean showSaved = false;
 
     public static NewsFragment newInstance(NewsApi.Category category) {
         NewsFragment fragment = new NewsFragment();
+        if (category == null) {
+            return fragment;
+        }
         Bundle args = new Bundle();
         args.putString(PARAM_CATEGORY, category.name());
         fragment.setArguments(args);
@@ -47,6 +51,8 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsAdapterLis
         if (getArguments() != null) {
             newsCategory = NewsApi.Category
                     .valueOf(getArguments().getString(PARAM_CATEGORY));
+        } else {
+            showSaved = true;
         }
     }
 
@@ -70,16 +76,27 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsAdapterLis
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         NewsViewModel viewModel = ViewModelProviders.of(this).get(NewsViewModel.class);
-        Specification specs = new Specification();
-        specs.setCategory(newsCategory);
-        viewModel.getNewsHeadlines(specs).observe(this, new Observer<List<Article>>() {
-            @Override
-            public void onChanged(@Nullable List<Article> articles) {
-                if (articles != null) {
-                    newsAdapter.setArticles(articles);
+        if (showSaved) {
+            viewModel.getAllSaved().observeForever(new Observer<List<Article>>() {
+                @Override
+                public void onChanged(@Nullable List<Article> articles) {
+                    if (articles != null) {
+                        newsAdapter.setArticles(articles);
+                    }
                 }
-            }
-        });
+            });
+        } else {
+            Specification specs = new Specification();
+            specs.setCategory(newsCategory);
+            viewModel.getNewsHeadlines(specs).observe(this, new Observer<List<Article>>() {
+                @Override
+                public void onChanged(@Nullable List<Article> articles) {
+                    if (articles != null) {
+                        newsAdapter.setArticles(articles);
+                    }
+                }
+            });
+        }
     }
 
     @Override
@@ -92,12 +109,14 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsAdapterLis
         binding.rvNewsPosts.setLayoutAnimation(controller);
         binding.rvNewsPosts.scheduleLayoutAnimation();
         startActivity(intent);
-        getActivity().overridePendingTransition(R.anim.slide_up_animation, R.anim.fade_exit_transition);
+        if (getActivity() != null) {
+            getActivity().overridePendingTransition(R.anim.slide_up_animation, R.anim.fade_exit_transition);
+        }
     }
 
     @Override
     public void onItemOptionsClicked(Article article) {
-        OptionsBottomSheet bottomSheet = OptionsBottomSheet.getInstance(article.getTitle(), article.getUrl());
+        OptionsBottomSheet bottomSheet = OptionsBottomSheet.getInstance(article.getTitle(), article.getUrl(), article.getId());
         if (getActivity() != null) {
             bottomSheet.show(getActivity().getSupportFragmentManager(), bottomSheet.getTag());
         } else {

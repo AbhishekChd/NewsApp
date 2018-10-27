@@ -18,7 +18,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/btn_save_for_later"
+            android:id="@+id/btn_save"
             style="@style/AppTheme.OptionsBottomSheetButton"
             android:drawableStart="@drawable/ic_save"
             android:text="@string/bottom_sheet_option_save"
@@ -33,7 +33,7 @@
             android:text="@string/bottom_sheet_option_open_in_browser"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/btn_share"
-            app:layout_constraintTop_toBottomOf="@id/btn_save_for_later" />
+            app:layout_constraintTop_toBottomOf="@id/btn_save" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

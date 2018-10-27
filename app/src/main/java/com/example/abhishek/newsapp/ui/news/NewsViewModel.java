@@ -12,14 +12,26 @@ import com.example.abhishek.newsapp.models.Specification;
 import java.util.List;
 
 public class NewsViewModel extends AndroidViewModel {
-    private final NewsRepository mNewsRepository;
+    private final NewsRepository newsRepository;
 
     public NewsViewModel(@NonNull Application application) {
         super(application);
-        mNewsRepository = NewsRepository.getInstance(application.getApplicationContext());
+        newsRepository = NewsRepository.getInstance(application.getApplicationContext());
     }
 
     public LiveData<List<Article>> getNewsHeadlines(Specification specification) {
-        return mNewsRepository.getHeadlines(specification);
+        return newsRepository.getHeadlines(specification);
+    }
+
+    public LiveData<List<Article>> getAllSaved() {
+        return newsRepository.getSaved();
+    }
+
+    public LiveData<Boolean> isSaved(int articleId) {
+        return newsRepository.isSaved(articleId);
+    }
+
+    public void toggleSave(int articleId) {
+        newsRepository.removeSaved(articleId);
     }
 }
