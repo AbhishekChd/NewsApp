@@ -7,6 +7,7 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 
 import com.example.abhishek.newsapp.data.dao.HeadlinesDao;
+import com.example.abhishek.newsapp.data.dao.SavedDao;
 import com.example.abhishek.newsapp.data.dao.SourcesDao;
 import com.example.abhishek.newsapp.models.Article;
 import com.example.abhishek.newsapp.models.Source;
@@ -23,6 +24,7 @@ public class NewsRepository {
     private final NewsApiClient newsApiService;
     private final HeadlinesDao headlinesDao;
     private final SourcesDao sourcesDao;
+    private final SavedDao savedDao;
     private final AppExecutors mExecutor;
     private final MutableLiveData<List<Article>> networkArticleLiveData;
     private final MutableLiveData<List<Source>> networkSourceLiveData;
@@ -32,6 +34,7 @@ public class NewsRepository {
         newsApiService = NewsApiClient.getInstance(context);
         headlinesDao = NewsDatabase.getInstance(context).headlinesDao();
         sourcesDao = NewsDatabase.getInstance(context).sourcesDao();
+        savedDao = NewsDatabase.getInstance(context).savedDao();
         mExecutor = AppExecutors.getInstance();
         networkArticleLiveData = new MutableLiveData<>();
         networkSourceLiveData = new MutableLiveData<>();
@@ -98,5 +101,22 @@ public class NewsRepository {
             }
         });
         return sourcesDao.getAllSources();
+    }
+
+    public LiveData<List<Article>> getSaved() {
+        return savedDao.getAllSaved();
+    }
+
+    public LiveData<Boolean> isSaved(int articleId) {
+        return savedDao.isFavourite(articleId);
+    }
+
+    public void removeSaved(final int articleId) {
+        mExecutor.getDiskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                savedDao.removeSaved(articleId);
+            }
+        });
     }
 }

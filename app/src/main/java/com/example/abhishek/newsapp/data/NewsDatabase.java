@@ -7,6 +7,7 @@ import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 
 import com.example.abhishek.newsapp.data.dao.HeadlinesDao;
+import com.example.abhishek.newsapp.data.dao.SavedDao;
 import com.example.abhishek.newsapp.data.dao.SourcesDao;
 import com.example.abhishek.newsapp.models.Article;
 import com.example.abhishek.newsapp.models.SavedArticle;
@@ -36,4 +37,6 @@ public abstract class NewsDatabase extends RoomDatabase {
     public abstract HeadlinesDao headlinesDao();
 
     public abstract SourcesDao sourcesDao();
+
+    public abstract SavedDao savedDao();
 }
