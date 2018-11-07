@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:initialKeyguardLayout="@layout/saved_news_widget"
+    android:initialLayout="@layout/saved_news_widget"
+    android:minWidth="320dp"
+    android:minHeight="110dp"
+    android:previewImage="@mipmap/ic_news_logo"
+    android:resizeMode="horizontal"
+    android:updatePeriodMillis="3600000"
+    android:widgetCategory="home_screen" />

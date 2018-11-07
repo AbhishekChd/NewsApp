@@ -11,4 +11,5 @@
     <dimen name="snackbar_margin_vertical">8dp</dimen>
     <dimen name="snackbar_margin_horizontal">16dp</dimen>
     <dimen name="snackbar_padding">8dp</dimen>
+    <dimen name="widget_margin">8dp</dimen>
 </resources>

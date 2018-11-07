@@ -24,6 +24,16 @@
         <activity
             android:name=".ui.news.DetailActivity"
             android:theme="@style/AppTheme.TransparentBar" />
+
+        <receiver android:name=".widget.SavedNewsWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/saved_news_widget_info" />
+        </receiver>
     </application>
 
 </manifest>
