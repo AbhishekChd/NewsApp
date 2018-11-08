@@ -54,6 +54,17 @@ public class SavedNewsService extends IntentService {
             } else if (ACTION_GET_PREVIOUS.equals(action)) {
                 final int param1 = intent.getIntExtra(PARAM_CURRENT, 0);
                 handleActionPrevious(param1);
+            } else if (ACTION_UPDATE_WIDGETS.equals(action)) {
+                final LiveData<List<Article>> articlesLiveData = NewsRepository.getInstance(getApplicationContext()).getSaved();
+                articlesLiveData.observeForever(new Observer<List<Article>>() {
+                    @Override
+                    public void onChanged(@Nullable List<Article> articles) {
+                        if (articles != null && articles.size() > 0) {
+                            handleUpdateWidgets(articles, 0);
+                            articlesLiveData.removeObserver(this);
+                        }
+                    }
+                });
             }
         }
     }

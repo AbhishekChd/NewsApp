@@ -96,6 +96,20 @@ public class SavedNewsWidget extends AppWidgetProvider {
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 
+    @Override
+    public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
+        Intent nextIntent = new Intent(context, SavedNewsService.class);
+        nextIntent.setAction(SavedNewsService.ACTION_GET_NEXT);
+        nextIntent.putExtra(SavedNewsService.PARAM_CURRENT, -1);
+        PendingIntent nextPendingIntent = PendingIntent.getService(context, 0, nextIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        try {
+            nextPendingIntent.send();
+        } catch (PendingIntent.CanceledException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public static void updateNewsWidgets(Context context, AppWidgetManager appWidgetManager, List<Article> articles, int selected, int[] appWidgetIds) {
         // There may be multiple widgets active, so update all of them
         for (int appWidgetId : appWidgetIds) {
