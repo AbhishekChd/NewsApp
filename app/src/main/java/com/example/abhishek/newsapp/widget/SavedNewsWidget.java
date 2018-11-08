@@ -42,6 +42,8 @@ public class SavedNewsWidget extends AppWidgetProvider {
             views.setViewVisibility(R.id.iv_news_image, View.VISIBLE);
             views.setViewVisibility(R.id.tv_news_title, View.VISIBLE);
             views.setViewVisibility(R.id.tv_page, View.VISIBLE);
+            views.setViewVisibility(R.id.ib_next, View.VISIBLE);
+            views.setViewVisibility(R.id.ib_previous, View.VISIBLE);
             views.setViewVisibility(R.id.tv_error, View.GONE);
             Timber.d("Articles %d", articles.size());
             if (articles.size() > 0 && selected < articles.size()) {
@@ -82,6 +84,8 @@ public class SavedNewsWidget extends AppWidgetProvider {
             views.setViewVisibility(R.id.iv_news_image, View.GONE);
             views.setViewVisibility(R.id.tv_news_title, View.GONE);
             views.setViewVisibility(R.id.tv_page, View.GONE);
+            views.setViewVisibility(R.id.ib_next, View.GONE);
+            views.setViewVisibility(R.id.ib_previous, View.GONE);
             views.setViewVisibility(R.id.tv_error, View.VISIBLE);
 
             Intent home = new Intent(context, MainActivity.class);
