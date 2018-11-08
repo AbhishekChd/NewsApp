@@ -15,6 +15,8 @@ import com.example.abhishek.newsapp.R;
 import com.example.abhishek.newsapp.data.NewsRepository;
 import com.example.abhishek.newsapp.databinding.ActivityDetailBinding;
 import com.example.abhishek.newsapp.models.Article;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.MobileAds;
 
 public class DetailActivity extends AppCompatActivity {
     public static final String PARAM_ARTICLE = "param-article";
@@ -34,6 +36,10 @@ public class DetailActivity extends AppCompatActivity {
         newsRepository = NewsRepository.getInstance(this);
 
         getSavedState();
+
+        MobileAds.initialize(this, getString(R.string.admob_app_id));
+        AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build();
+        binding.adView.loadAd(adRequest);
 
         binding.ivSave.setOnClickListener(new View.OnClickListener() {
             @Override
