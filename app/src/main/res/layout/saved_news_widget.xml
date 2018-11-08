@@ -13,11 +13,10 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="sans-serif-smallcaps"
+        android:layout_marginTop="12dp"
         android:text="@string/app_name"
         android:textColor="@color/colorTextSecondary"
-        android:textSize="17sp"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
     <TextView
@@ -27,10 +26,9 @@
         android:layout_alignBaseline="@id/tv_app_name"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="16dp"
-        android:fontFamily="sans-serif-smallcaps"
-        android:text="1 / 5"
+        android:text="1/5"
         android:textColor="@color/colorTextSecondary"
-        android:textSize="17sp"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
     <ImageView
@@ -63,7 +61,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="12dp"
         android:background="@drawable/widget_button_background"
         android:src="@drawable/widget_next"
         tools:ignore="VectorDrawableCompat" />
@@ -74,7 +72,7 @@
         android:layout_height="44dp"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="12dp"
         android:layout_toStartOf="@id/ib_next"
         android:background="@drawable/widget_button_background"
         android:src="@drawable/widget_previous"
