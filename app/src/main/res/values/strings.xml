@@ -24,4 +24,5 @@
 
     <string name="message_item_saved">Article added to Saved</string>
     <string name="message_item_removed">Article removed from Saved</string>
+    <string name="info_no_saved_articles">No Saved Articles</string>
 </resources>

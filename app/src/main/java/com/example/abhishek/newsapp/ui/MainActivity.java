@@ -1,8 +1,13 @@
 package com.example.abhishek.newsapp.ui;
 
+import android.appwidget.AppWidgetManager;
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Observer;
+import android.content.ComponentName;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
@@ -13,11 +18,16 @@ import android.view.MenuItem;
 
 import com.example.abhishek.newsapp.BuildConfig;
 import com.example.abhishek.newsapp.R;
+import com.example.abhishek.newsapp.data.NewsRepository;
 import com.example.abhishek.newsapp.databinding.ActivityMainBinding;
+import com.example.abhishek.newsapp.models.Article;
 import com.example.abhishek.newsapp.ui.headlines.HeadlinesFragment;
 import com.example.abhishek.newsapp.ui.news.NewsFragment;
 import com.example.abhishek.newsapp.ui.news.OptionsBottomSheet;
 import com.example.abhishek.newsapp.ui.sources.SourceFragment;
+import com.example.abhishek.newsapp.widget.SavedNewsWidget;
+
+import java.util.List;
 
 import timber.log.Timber;
 
@@ -80,6 +90,23 @@ public class MainActivity extends AppCompatActivity implements OptionsBottomShee
         }
 
         setupToolbar();
+
+        final AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
+
+        final LiveData<List<Article>> saved = NewsRepository.getInstance(this).getSaved();
+        saved.observe(this, new Observer<List<Article>>() {
+            @Override
+            public void onChanged(@Nullable List<Article> articles) {
+                if (articles != null) {
+                    int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(getApplicationContext(), SavedNewsWidget.class));
+                    if (articles.size() == 0) {
+                        SavedNewsWidget.updateNewsWidgets(getApplicationContext(), appWidgetManager, articles, -1, appWidgetIds);
+                    } else {
+                        SavedNewsWidget.updateNewsWidgets(getApplicationContext(), appWidgetManager, articles, 0, appWidgetIds);
+                    }
+                }
+            }
+        });
     }
 
     private void setupToolbar() {
