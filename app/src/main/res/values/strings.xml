@@ -14,6 +14,8 @@
     <string name="image_desc_share_button">share button</string>
     <string name="image_desc_save_button">save button</string>
     <string name="image_desc_open_in_browser_button">open in browser button</string>
+    <string name="image_btn_desc_next">Next Button</string>
+    <string name="image_btn_desc_prev">Previous Button</string>
     <string name="bottom_sheet_option_save">Save for later</string>
     <string name="bottom_sheet_option_share">Share</string>
     <string name="bottom_sheet_option_open_in_browser">Open in browser</string>
@@ -28,4 +30,5 @@
 
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
     <string name="admob_app_id">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="sample_page">1/5</string>
 </resources>

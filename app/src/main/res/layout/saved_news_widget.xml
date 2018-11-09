@@ -1,10 +1,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/widget_parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/widget_background"
-    android:id="@+id/widget_parent"
     android:padding="@dimen/widget_margin">
 
     <TextView
@@ -27,7 +27,7 @@
         android:layout_alignBaseline="@id/tv_app_name"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="16dp"
-        android:text="1/5"
+        android:text="@string/sample_page"
         android:textColor="@color/colorTextSecondary"
         android:textSize="16sp"
         android:textStyle="bold" />
@@ -40,6 +40,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:background="@color/cardBackground"
+        android:contentDescription="@string/image_desc"
         android:scaleType="centerCrop" />
 
     <TextView
@@ -65,6 +66,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="12dp"
         android:background="@drawable/widget_button_background"
+        android:contentDescription="@string/image_btn_desc_next"
         android:src="@drawable/widget_next"
         tools:ignore="VectorDrawableCompat" />
 
@@ -77,6 +79,7 @@
         android:layout_marginBottom="12dp"
         android:layout_toStartOf="@id/ib_next"
         android:background="@drawable/widget_button_background"
+        android:contentDescription="@string/image_btn_desc_prev"
         android:src="@drawable/widget_previous"
         tools:ignore="VectorDrawableCompat" />
 
