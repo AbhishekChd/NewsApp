@@ -26,6 +26,7 @@ import com.example.abhishek.newsapp.ui.news.NewsFragment;
 import com.example.abhishek.newsapp.ui.news.OptionsBottomSheet;
 import com.example.abhishek.newsapp.ui.sources.SourceFragment;
 import com.example.abhishek.newsapp.widget.SavedNewsWidget;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.List;
 
@@ -37,16 +38,22 @@ public class MainActivity extends AppCompatActivity implements OptionsBottomShee
     private HeadlinesFragment headlinesFragment;
     private SourceFragment sourceFragment;
     private NewsFragment newsFragment;
+    private FirebaseAnalytics mFirebaseAnalytics;
     private final BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Bundle bundle = new Bundle();
             switch (item.getItemId()) {
                 case R.id.navigation_headlines:
                     fragmentManager.beginTransaction()
                             .replace(R.id.fragment_container, headlinesFragment)
                             .commit();
+                    bundle.putString(
+                            FirebaseAnalytics.Param.ITEM_CATEGORY,
+                            getString(R.string.title_headlines)
+                    );
                     return true;
                 case R.id.navigation_saved:
                     if (newsFragment == null) {
@@ -55,6 +62,10 @@ public class MainActivity extends AppCompatActivity implements OptionsBottomShee
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.fragment_container, newsFragment)
                             .commit();
+                    bundle.putString(
+                            FirebaseAnalytics.Param.ITEM_CATEGORY,
+                            getString(R.string.title_saved)
+                    );
                     return true;
                 case R.id.navigation_sources:
                     if (sourceFragment == null) {
@@ -63,8 +74,13 @@ public class MainActivity extends AppCompatActivity implements OptionsBottomShee
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.fragment_container, sourceFragment)
                             .commit();
+                    bundle.putString(
+                            FirebaseAnalytics.Param.ITEM_CATEGORY,
+                            getString(R.string.title_sources)
+                    );
                     return true;
             }
+            mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
             return false;
         }
     };
@@ -80,6 +96,9 @@ public class MainActivity extends AppCompatActivity implements OptionsBottomShee
         // Bind data using DataBinding
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         binding.navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         if (savedInstanceState == null) {
             // Add a default fragment
