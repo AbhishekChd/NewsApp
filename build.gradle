@@ -29,7 +29,7 @@ allprojects {
         timber_version = "4.7.1"
         glide_version = "4.8.0"
         ads_sdk_version = "17.1.0"
-        firebase_version = "16.0.5"
+        firebase_version = "16.0.4"
     }
 }
 
