@@ -1,19 +1,23 @@
 package com.example.abhishek.newsapp.ui;
 
 import android.appwidget.AppWidgetManager;
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.Observer;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+
 import android.content.ComponentName;
-import android.databinding.DataBindingUtil;
+
+import androidx.databinding.DataBindingUtil;
+
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import android.view.MenuItem;
 
 import com.example.abhishek.newsapp.BuildConfig;
@@ -26,6 +30,8 @@ import com.example.abhishek.newsapp.ui.news.NewsFragment;
 import com.example.abhishek.newsapp.ui.news.OptionsBottomSheet;
 import com.example.abhishek.newsapp.ui.sources.SourceFragment;
 import com.example.abhishek.newsapp.widget.SavedNewsWidget;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.List;

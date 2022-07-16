@@ -2,12 +2,10 @@ package com.example.abhishek.newsapp.ui.news;
 
 import android.content.Context;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.BottomSheetDialogFragment;
-import android.support.v4.app.Fragment;
+import androidx.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,12 +13,11 @@ import android.view.ViewGroup;
 import com.example.abhishek.newsapp.R;
 import com.example.abhishek.newsapp.data.NewsRepository;
 import com.example.abhishek.newsapp.databinding.FragmentOptionsBottomSheetBinding;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import timber.log.Timber;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class OptionsBottomSheet extends BottomSheetDialogFragment implements View.OnClickListener {
 
     private static final String PARAM_TITLE = "param-title";

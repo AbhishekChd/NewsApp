@@ -1,8 +1,8 @@
 package com.example.abhishek.newsapp.ui.headlines;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.abhishek.newsapp.network.NewsApi;
 import com.example.abhishek.newsapp.ui.news.NewsFragment;

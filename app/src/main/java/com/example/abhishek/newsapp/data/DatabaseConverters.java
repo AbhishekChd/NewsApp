@@ -1,6 +1,6 @@
 package com.example.abhishek.newsapp.data;
 
-import android.arch.persistence.room.TypeConverter;
+import androidx.room.TypeConverter;
 
 import java.sql.Timestamp;
 

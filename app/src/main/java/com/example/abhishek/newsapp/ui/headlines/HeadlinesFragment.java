@@ -1,11 +1,11 @@
 package com.example.abhishek.newsapp.ui.headlines;
 
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewCompat;
+import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
+import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.example.abhishek.newsapp.R;
 import com.example.abhishek.newsapp.databinding.FragmentHeadlinesBinding;
 import com.example.abhishek.newsapp.network.NewsApi;
+import com.google.android.material.tabs.TabLayout;
 
 public class HeadlinesFragment extends Fragment {
     private final String[] categories = {

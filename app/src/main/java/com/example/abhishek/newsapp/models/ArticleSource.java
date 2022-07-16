@@ -1,6 +1,6 @@
 package com.example.abhishek.newsapp.models;
 
-import android.arch.persistence.room.ColumnInfo;
+import androidx.room.ColumnInfo;
 import android.os.Parcel;
 import android.os.Parcelable;
 

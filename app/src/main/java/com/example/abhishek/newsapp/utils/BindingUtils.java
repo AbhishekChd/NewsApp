@@ -1,7 +1,7 @@
 package com.example.abhishek.newsapp.utils;
 
 import android.content.Context;
-import android.databinding.BindingAdapter;
+import androidx.databinding.BindingAdapter;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.widget.ImageView;

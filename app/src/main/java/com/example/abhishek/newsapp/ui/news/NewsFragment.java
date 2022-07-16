@@ -1,17 +1,22 @@
 package com.example.abhishek.newsapp.ui.news;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
+
+import androidx.databinding.DataBindingUtil;
+
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -99,7 +104,7 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsAdapterLis
         } else {
             Specification specs = new Specification();
             specs.setCategory(newsCategory);
-            viewModel.getNewsHeadlines(specs).observe(this, new Observer<List<Article>>() {
+            viewModel.getNewsHeadlines(specs).observe(getViewLifecycleOwner(), new Observer<List<Article>>() {
                 @Override
                 public void onChanged(@Nullable List<Article> articles) {
                     if (articles != null) {

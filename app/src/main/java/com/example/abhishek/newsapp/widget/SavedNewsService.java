@@ -2,12 +2,12 @@ package com.example.abhishek.newsapp.widget;
 
 import android.app.IntentService;
 import android.appwidget.AppWidgetManager;
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.Observer;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.Context;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.example.abhishek.newsapp.data.NewsRepository;
 import com.example.abhishek.newsapp.models.Article;

@@ -1,13 +1,18 @@
 package com.example.abhishek.newsapp.ui.news;
 
-import android.arch.lifecycle.Observer;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
+
+import androidx.databinding.DataBindingUtil;
+
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.Nullable;
+
 import android.view.MenuItem;
 import android.view.View;
 
@@ -37,9 +42,9 @@ public class DetailActivity extends AppCompatActivity {
 
         getSavedState();
 
-        MobileAds.initialize(this, getString(R.string.admob_app_id));
-        AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build();
-        binding.adView.loadAd(adRequest);
+//        MobileAds.initialize(this, getString(R.string.admob_app_id));
+//        AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build();
+//        binding.adView.loadAd(adRequest);
 
         binding.ivSave.setOnClickListener(new View.OnClickListener() {
             @Override

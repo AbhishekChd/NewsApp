@@ -3,13 +3,11 @@ package com.example.abhishek.newsapp.widget;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.Observer;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 import android.widget.RemoteViews;
 
@@ -17,12 +15,10 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.AppWidgetTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.example.abhishek.newsapp.R;
-import com.example.abhishek.newsapp.data.NewsRepository;
 import com.example.abhishek.newsapp.models.Article;
 import com.example.abhishek.newsapp.ui.MainActivity;
 import com.example.abhishek.newsapp.ui.news.DetailActivity;
 import com.example.abhishek.newsapp.utils.GlideApp;
-import com.example.abhishek.newsapp.utils.NewsGlideModule;
 
 import java.util.List;
 

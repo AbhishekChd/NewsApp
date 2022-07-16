@@ -1,10 +1,10 @@
 package com.example.abhishek.newsapp.data;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.Observer;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import android.content.Context;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.example.abhishek.newsapp.data.dao.HeadlinesDao;
 import com.example.abhishek.newsapp.data.dao.SavedDao;
